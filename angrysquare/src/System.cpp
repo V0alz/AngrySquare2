@@ -82,7 +82,7 @@ void System::Run()
 		case SysState::States::STATE_CLEANUP:
 		{
 			Clean();
-			break;
+			return;
 		}
 		default:
 			break;
@@ -94,9 +94,11 @@ void System::Run()
 
 void System::Clean()
 {
-	m_gfx->Destroy();
 	if( m_gfx != nullptr )
+	{
+		m_gfx->Destroy();
 		delete m_gfx;
-
+		m_gfx = nullptr;
+	}
 	Stop();
 }

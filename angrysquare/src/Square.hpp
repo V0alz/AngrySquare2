@@ -17,18 +17,17 @@
 */
 #pragma once
 
-#include "Shader.hpp"
-#include "Window.hpp"
+#include "GL\glew.h"
+#include <GLFW\glfw3.h>
 
-class Graphics
+class Square
 {
 public:
-	Graphics();
-	virtual ~Graphics();
-	bool InitGL();
-	void Destroy();
+	Square();
+	virtual ~Square();
+	virtual void Update();
+	void Render();
 
 private:
-	bool m_isReady;
-	Shader* m_shader;
+	//Sprite m_sprite;
 };

@@ -17,18 +17,22 @@
 */
 #pragma once
 
-#include "Shader.hpp"
-#include "Window.hpp"
+#include <GL\glew.h>
+#include <GLFW\glfw3.h>
+#include <string>
 
-class Graphics
+class Shader
 {
 public:
-	Graphics();
-	virtual ~Graphics();
-	bool InitGL();
-	void Destroy();
+	Shader();
+	~Shader();
+	void Bind();
+	virtual bool Create(); // TODO: rewrite me
+
+protected:
+	bool CheckError( GLuint shader, bool lnkchk = false );
+	std::string LoadFromFile( std::string file );
 
 private:
-	bool m_isReady;
-	Shader* m_shader;
+	GLuint m_program;
 };

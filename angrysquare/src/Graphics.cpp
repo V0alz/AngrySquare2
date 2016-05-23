@@ -21,10 +21,16 @@
 Graphics::Graphics()
 {
 	m_isReady = false;
+	m_shader = nullptr;
 }
 
 Graphics::~Graphics()
 {
+	if( m_shader != nullptr )
+	{
+		delete m_shader;
+		m_shader = nullptr;
+	}
 }
 
 bool Graphics::InitGL()
@@ -38,8 +44,27 @@ bool Graphics::InitGL()
 	WindowSettings* settings = new WindowSettings();
 	if( Window::Create( settings ) == 0 )
 	{
+		GLenum e = glewInit();
+		if( e != GLEW_OK )
+		{
+			std::cout << glewGetErrorString( e ) << std::endl;
+			delete settings;
+			return false;
+		}
+		if( !GLEW_VERSION_3_3 )
+		{
+			std::cout << "Failed to find requested version OpenGL version.\nErrors may occur..." << std::endl;
+		}
 		glClearColor( 0.0f, 0.0f, 0.3f, 1.0f );
 		glEnable( GL_DEPTH_TEST );
+
+		m_shader = new Shader();
+		if( !m_shader->Create() )
+		{
+			delete settings;
+			delete m_shader;
+			return false;
+		}
 
 		m_isReady = true;
 		delete settings;
@@ -54,5 +79,10 @@ bool Graphics::InitGL()
 
 void Graphics::Destroy()
 {
+	if( m_shader != nullptr )
+	{
+		delete m_shader;
+		m_shader = nullptr;
+	}
 	Window::Destroy();
 }
