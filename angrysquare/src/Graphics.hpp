@@ -28,6 +28,8 @@ public:
 	bool InitGL();
 	void Destroy();
 
+	Shader* GetShader() { return m_shader; }
+
 private:
 	bool m_isReady;
 	Shader* m_shader;

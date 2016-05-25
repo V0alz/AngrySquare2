@@ -17,23 +17,21 @@
 */
 #pragma once
 
-#include "Graphics.hpp"
-#include "Game.hpp"
+#include <gl\glew.h>
+#include <GLFW\glfw3.h>
+#include "MeshData.hpp"
 
-class System
+class Mesh
 {
 public:
-	System();
-	~System();
-	void Start( bool andRun = true );
-
-protected:
-	void Stop();
-	void Run();
-	void Clean();
-
+	Mesh();
+	~Mesh();
+	void Set( MeshData& data );
+	void Draw();
+	
 private:
-	bool m_running;
-	Graphics* m_gfx;
-	Game* m_game;
+	GLuint m_vao;
+	GLuint m_vbo;
+	GLuint m_ibo;
+	int m_size;
 };

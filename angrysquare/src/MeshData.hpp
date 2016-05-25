@@ -17,23 +17,30 @@
 */
 #pragma once
 
-#include "Graphics.hpp"
-#include "Game.hpp"
+#include <vector>
+#include <glm\glm.hpp>
 
-class System
-{
-public:
-	System();
-	~System();
-	void Start( bool andRun = true );
+struct MeshData
+{ 
+	std::vector<glm::vec2> m_vertex;
+	std::vector<glm::vec2> m_uv;
+	std::vector<unsigned int> m_indices;
 
-protected:
-	void Stop();
-	void Run();
-	void Clean();
+	void Set( glm::vec2 vertex, glm::vec2 uv = glm::vec2() )
+	{
+		m_vertex.emplace_back( vertex );
+		m_uv.emplace_back( uv );
+	}
 
-private:
-	bool m_running;
-	Graphics* m_gfx;
-	Game* m_game;
+	void AddFace( glm::ivec3 face )
+	{
+		m_indices.emplace_back( face.x );
+		m_indices.emplace_back( face.y );
+		m_indices.emplace_back( face.z );
+	}
+
+	int Size()
+	{
+		return m_indices.size();
+	}
 };

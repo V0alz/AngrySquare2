@@ -18,10 +18,13 @@
 #include "System.hpp"
 #include "SysState.hpp"
 
+#include "Mesh.hpp"
+
 System::System()
 {
 	m_running = false;
 	m_gfx = nullptr;
+	m_game = nullptr;
 }
 
 System::~System()
@@ -67,6 +70,7 @@ void System::Run()
 				SysState::Set( SysState::States::STATE_CLEANUP );
 			}
 			m_gfx->InitGL();
+			m_game = new Game();
 			SysState::Set( SysState::States::STATE_PLAYING );
 			break; 
 		}
@@ -77,6 +81,9 @@ void System::Run()
 			{
 				SysState::Set( SysState::States::STATE_CLEANUP );
 			}
+
+			m_gfx->GetShader()->Bind();
+			m_game->Frame();
 			break;
 		}
 		case SysState::States::STATE_CLEANUP:
@@ -87,18 +94,26 @@ void System::Run()
 		default:
 			break;
 		}
+
 		Window::SwapBuffers();
 		glfwPollEvents();
-	} while( m_running );
+	}
+	while( m_running );
 }
 
 void System::Clean()
 {
+	if( m_game != nullptr )
+	{
+		delete m_game;
+		m_game = nullptr;
+	}
 	if( m_gfx != nullptr )
 	{
 		m_gfx->Destroy();
 		delete m_gfx;
 		m_gfx = nullptr;
 	}
+
 	Stop();
 }

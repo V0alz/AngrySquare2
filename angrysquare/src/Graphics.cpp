@@ -44,6 +44,7 @@ bool Graphics::InitGL()
 	WindowSettings* settings = new WindowSettings();
 	if( Window::Create( settings ) == 0 )
 	{
+		glewExperimental = GL_TRUE;
 		GLenum e = glewInit();
 		if( e != GLEW_OK )
 		{
@@ -57,6 +58,8 @@ bool Graphics::InitGL()
 		}
 		glClearColor( 0.0f, 0.0f, 0.3f, 1.0f );
 		glEnable( GL_DEPTH_TEST );
+		//glEnable( GL_CULL_FACE );
+		//glCullFace( GL_CW );
 
 		m_shader = new Shader();
 		if( !m_shader->Create() )
