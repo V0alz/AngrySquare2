@@ -16,7 +16,7 @@
 *	along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
 #include <Windows.h>
-#include "System.hpp"
+#include "./System/System.hpp"
 #include <iostream>
 
 int main()

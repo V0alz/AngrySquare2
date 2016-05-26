@@ -18,8 +18,6 @@
 #include "System.hpp"
 #include "SysState.hpp"
 
-#include "Mesh.hpp"
-
 System::System()
 {
 	m_running = false;
@@ -29,7 +27,7 @@ System::System()
 
 System::~System()
 {
-
+	Clean();
 }
 
 void System::Start( bool andRun )

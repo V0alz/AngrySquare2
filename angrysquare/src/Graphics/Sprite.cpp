@@ -15,25 +15,47 @@
 *	You should have received a copy of the GNU General Public License
 *	along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-#pragma once
+#include "Sprite.hpp"
+#include "MeshData.hpp"
 
-#include "Graphics.hpp"
-#include "Game.hpp"
-
-class System
+Sprite::Sprite()
 {
-public:
-	System();
-	~System();
-	void Start( bool andRun = true );
+	m_mesh = nullptr;
+}
 
-protected:
-	void Stop();
-	void Run();
-	void Clean();
+Sprite::Sprite( glm::vec2 dimensions )
+{
+	m_mesh = nullptr;
+	m_mesh = new Mesh();
+	Set( dimensions );
+}
 
-private:
-	bool m_running;
-	Graphics* m_gfx;
-	Game* m_game;
-};
+Sprite::~Sprite()
+{
+	if( m_mesh != nullptr )
+	{
+		delete m_mesh;
+		m_mesh = nullptr;
+	}
+}
+
+void Sprite::Set( glm::vec2 dimensions )
+{
+	MeshData data;
+	float _x = dimensions.x / 2;
+	float _y = dimensions.y / 2;
+
+	data.Set( glm::vec2( -_x, +_y ) );
+	data.Set( glm::vec2( +_x, +_y ) );
+	data.Set( glm::vec2( +_x, -_y ) );
+	data.Set( glm::vec2( -_x, -_y ) );
+	data.AddFace( glm::ivec3( 0, 1, 2 ) );
+	data.AddFace( glm::ivec3( 2, 3, 0 ) );
+
+	m_mesh->Set( data );
+}
+
+void Sprite::Draw()
+{
+	m_mesh->Draw();
+}

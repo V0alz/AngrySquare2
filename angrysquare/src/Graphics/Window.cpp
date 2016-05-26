@@ -71,5 +71,6 @@ void Window::SwapBuffers()
 
 bool Window::ShouldExit()
 {
+	// fix this funcing error
 	return static_cast<int>(glfwWindowShouldClose( m_window ));
 }

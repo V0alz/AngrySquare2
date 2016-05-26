@@ -15,21 +15,20 @@
 *	You should have received a copy of the GNU General Public License
 *	along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-#pragma once
+#include "Game.hpp"
 
-#include "GL\glew.h"
-#include <GLFW\glfw3.h>
-
-#include "Graphics\Sprite.hpp"
-
-class Square
+Game::Game()
 {
-public:
-	Square();
-	virtual ~Square();
-	virtual void Update(); // extend square and use this func for player controls & ai respectivly
-	void Render();
+	square = new Square();
+}
 
-private:
-	Sprite* m_sprite;
-};
+Game::~Game()
+{
+	if( square != nullptr )
+		delete square;
+}
+
+void Game::Frame()
+{
+	square->Render();
+}

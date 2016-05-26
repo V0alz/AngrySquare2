@@ -17,19 +17,23 @@
 */
 #pragma once
 
-#include "GL\glew.h"
-#include <GLFW\glfw3.h>
+#include "../Graphics/Graphics.hpp"
+#include "../Game.hpp"
 
-#include "Graphics\Sprite.hpp"
-
-class Square
+class System
 {
 public:
-	Square();
-	virtual ~Square();
-	virtual void Update(); // extend square and use this func for player controls & ai respectivly
-	void Render();
+	System();
+	~System();
+	void Start( bool andRun = true );
+
+protected:
+	void Stop();
+	void Run();
+	void Clean();
 
 private:
-	Sprite* m_sprite;
+	bool m_running;
+	Graphics* m_gfx;
+	Game* m_game;
 };

@@ -13,56 +13,80 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\System">
+      <UniqueIdentifier>{d27e9026-a038-44ab-aae2-4a4b8de8ab98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\System">
+      <UniqueIdentifier>{1d984dfc-b0ec-477a-bd8a-f5ce8732e89c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics">
+      <UniqueIdentifier>{15bf3ba2-350a-40db-b681-2b552bacccb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics">
+      <UniqueIdentifier>{445c3501-c736-41f4-a508-900f4803255e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Window.cpp">
+    <ClCompile Include="src\System\System.cpp">
+      <Filter>Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphics\Graphics.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphics\Mesh.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphics\Shader.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphics\Window.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphics\Sprite.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Square.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Graphics.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\System.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Shader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Mesh.cpp">
+    <ClCompile Include="src\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\WindowsSettings.hpp">
+    <ClInclude Include="src\Game.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Graphics.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\System\SysState.hpp">
+      <Filter>Header Files\System</Filter>
     </ClInclude>
-    <ClInclude Include="src\Window.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\System\System.hpp">
+      <Filter>Header Files\System</Filter>
     </ClInclude>
-    <ClInclude Include="src\System.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\Graphics\Graphics.hpp">
+      <Filter>Header Files\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="src\SysState.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\Graphics\Mesh.hpp">
+      <Filter>Header Files\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="src\Shader.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\Graphics\MeshData.hpp">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphics\Shader.hpp">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphics\Window.hpp">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphics\WindowsSettings.hpp">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphics\Sprite.hpp">
+      <Filter>Header Files\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="src\Square.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Mesh.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\MeshData.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Game.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

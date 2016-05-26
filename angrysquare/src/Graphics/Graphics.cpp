@@ -58,8 +58,10 @@ bool Graphics::InitGL()
 		}
 		glClearColor( 0.0f, 0.0f, 0.3f, 1.0f );
 		glEnable( GL_DEPTH_TEST );
-		//glEnable( GL_CULL_FACE );
-		//glCullFace( GL_CW );
+		glEnable( GL_CULL_FACE ); // cull back faces of sprites.
+		glCullFace( GL_BACK );
+		glFrontFace( GL_CW );
+		glViewport( -1, 1, 1, -1 ); // keep the default viewport
 
 		m_shader = new Shader();
 		if( !m_shader->Create() )

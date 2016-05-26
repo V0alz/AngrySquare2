@@ -17,19 +17,19 @@
 */
 #pragma once
 
-#include "GL\glew.h"
-#include <GLFW\glfw3.h>
+#include "Mesh.hpp"
 
-#include "Graphics\Sprite.hpp"
-
-class Square
+class Sprite
 {
 public:
-	Square();
-	virtual ~Square();
-	virtual void Update(); // extend square and use this func for player controls & ai respectivly
-	void Render();
+	Sprite();
+	Sprite( glm::vec2 dimensions );
+	~Sprite();
+	void Set( glm::vec2 dimensions );
+	void Draw();
 
 private:
-	Sprite* m_sprite;
+	Mesh* m_mesh;
+	// texture here
+	// +other data
 };
