@@ -15,33 +15,21 @@
 *	You should have received a copy of the GNU General Public License
 *	along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-#include <Windows.h>
-#include "./System/System.hpp"
-#include <iostream>
+#pragma once
 
-void Go()
+#include <GLFW\glfw3.h>
+#include "../Graphics/Window.hpp"
+
+class Input
 {
-	System* sys = new System();
-	sys->Start( true );
-	delete sys;
-}
+public:
+	static void Init();
+	static bool Get( int keycode );
+	inline static void Set( int keycode, int action );
 
-int main( int argc, char* argv[] )
-{
-	UNREFERENCED_PARAMETER( argc );
-	UNREFERENCED_PARAMETER( argv );
+private:
+	static void cb_key( GLFWwindow* window, int key, int scancode, int action, int mods );
 
-	Go();
-	return 0;
-}
-
-int CALLBACK WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow )
-{
-	UNREFERENCED_PARAMETER( nCmdShow );
-	UNREFERENCED_PARAMETER( lpCmdLine );
-	UNREFERENCED_PARAMETER( hPrevInstance );
-	UNREFERENCED_PARAMETER( hInstance );
-
-	Go();
-	return 0;
-}
+private:
+	static bool m_keys[300];
+};

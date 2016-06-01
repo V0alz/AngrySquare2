@@ -3,6 +3,7 @@ Angry Square 2 is a 2D game made using OpenGL(3.3), based on an older probject u
 I plan to expand on my original idea...
 
 Any textures may not be final.
+I'm not investing huge amounts of time into this project, so updates here may be small.
 
 #### License
 See the LICENSE(.md) file for more details.

@@ -25,6 +25,9 @@
     <Filter Include="Source Files\Graphics">
       <UniqueIdentifier>{445c3501-c736-41f4-a508-900f4803255e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Graphics\Loader">
+      <UniqueIdentifier>{89314dca-dd46-4acc-8498-4098c02de5ad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">
@@ -53,6 +56,12 @@
     </ClCompile>
     <ClCompile Include="src\Game.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphics\Transform.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\System\Input.cpp">
+      <Filter>Source Files\System</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +97,15 @@
     </ClInclude>
     <ClInclude Include="src\Square.hpp">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphics\Loader\BMP.hpp">
+      <Filter>Header Files\Graphics\Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphics\Transform.hpp">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\System\Input.hpp">
+      <Filter>Header Files\System</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

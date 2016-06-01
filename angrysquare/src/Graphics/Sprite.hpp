@@ -23,13 +23,14 @@ class Sprite
 {
 public:
 	Sprite();
-	Sprite( glm::vec2 dimensions );
+	Sprite( glm::vec2 dimensions, GLuint tex );
 	~Sprite();
-	void Set( glm::vec2 dimensions );
+	void Set( glm::vec2 dimensions, GLuint tex );
 	void Draw();
 
 private:
 	Mesh* m_mesh;
+	GLuint m_texture;
 	// texture here
 	// +other data
 };

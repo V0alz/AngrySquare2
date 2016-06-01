@@ -16,6 +16,7 @@
 *	along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
 #include "Game.hpp"
+#include "System/Input.hpp"
 
 Game::Game()
 {
@@ -28,7 +29,10 @@ Game::~Game()
 		delete square;
 }
 
-void Game::Frame()
+void Game::Frame( Shader& shader )
 {
-	square->Render();
+	if( !Input::Get( GLFW_KEY_SPACE ) )
+	{
+		square->Render( shader );
+	}
 }

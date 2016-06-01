@@ -15,33 +15,24 @@
 *	You should have received a copy of the GNU General Public License
 *	along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-#include <Windows.h>
-#include "./System/System.hpp"
-#include <iostream>
+#pragma once
 
-void Go()
+#include <glm\glm.hpp>
+#include <glm\gtx\transform.hpp>
+
+class Transform
 {
-	System* sys = new System();
-	sys->Start( true );
-	delete sys;
-}
+public:
+	Transform();
+	Transform( glm::vec3 position = glm::vec3( 0.0f, 0.0f, 0.0f ), glm::vec3 rotation = glm::vec3( 0.0f, 0.0f, 0.0f ) );
+	~Transform();
 
-int main( int argc, char* argv[] )
-{
-	UNREFERENCED_PARAMETER( argc );
-	UNREFERENCED_PARAMETER( argv );
+	glm::mat4 GetModelMatrix();
 
-	Go();
-	return 0;
-}
+	inline glm::vec3* Position();
+	inline glm::vec3* Rotation();
 
-int CALLBACK WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow )
-{
-	UNREFERENCED_PARAMETER( nCmdShow );
-	UNREFERENCED_PARAMETER( lpCmdLine );
-	UNREFERENCED_PARAMETER( hPrevInstance );
-	UNREFERENCED_PARAMETER( hInstance );
-
-	Go();
-	return 0;
-}
+private:
+	glm::vec3 m_position;
+	glm::vec3 m_rotation;
+};

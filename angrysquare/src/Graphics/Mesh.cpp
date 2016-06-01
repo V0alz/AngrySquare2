@@ -22,6 +22,7 @@ Mesh::Mesh()
 {
 	glGenVertexArrays( 1, &m_vao );
 	glGenBuffers( 1, &m_vbo );
+	glGenBuffers( 1, &m_uvbo );
 	glGenBuffers( 1, &m_ibo );
 	m_size = 0;
 }
@@ -29,6 +30,7 @@ Mesh::Mesh()
 Mesh::~Mesh()
 {
 	glDeleteBuffers( 1, &m_ibo );
+	glDeleteBuffers( 1, &m_uvbo );
 	glDeleteBuffers( 1, &m_vbo );
 	glDeleteVertexArrays( 1, &m_vbo );
 }
@@ -42,6 +44,11 @@ void Mesh::Set( MeshData& data )
 	glBufferData( GL_ARRAY_BUFFER, data.m_vertex.size() * sizeof( glm::vec2 ), &data.m_vertex[0], GL_STATIC_DRAW );
 	glEnableVertexAttribArray( 0 );
 	glVertexAttribPointer( 0, 2, GL_FLOAT, GL_FALSE, 0, (GLvoid*)0 );
+
+	glBindBuffer( GL_ARRAY_BUFFER, m_uvbo );
+	glBufferData( GL_ARRAY_BUFFER, data.m_uv.size() * sizeof( glm::vec2 ), &data.m_uv[0], GL_STATIC_DRAW );
+	glEnableVertexAttribArray( 1 );
+	glVertexAttribPointer( 1, 2, GL_FLOAT, GL_FALSE, 0, (GLvoid*)0 );
 
 	glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, m_ibo );
 	glBufferData( GL_ELEMENT_ARRAY_BUFFER, m_size * sizeof( unsigned int ), &data.m_indices[0], GL_STATIC_DRAW );

@@ -32,6 +32,7 @@ public:
 private:
 	GLuint m_vao;
 	GLuint m_vbo;
+	GLuint m_uvbo;
 	GLuint m_ibo;
 	int m_size;
 };

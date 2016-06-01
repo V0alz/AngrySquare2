@@ -15,33 +15,44 @@
 *	You should have received a copy of the GNU General Public License
 *	along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-#include <Windows.h>
-#include "./System/System.hpp"
-#include <iostream>
+#include "Transform.hpp"
 
-void Go()
+Transform::Transform()
 {
-	System* sys = new System();
-	sys->Start( true );
-	delete sys;
+	m_position = glm::vec3();
+	m_rotation = glm::vec3();
 }
 
-int main( int argc, char* argv[] )
-{
-	UNREFERENCED_PARAMETER( argc );
-	UNREFERENCED_PARAMETER( argv );
 
-	Go();
-	return 0;
+Transform::Transform( glm::vec3 position, glm::vec3 rotation )
+{
+	m_position = position;
+	m_rotation = rotation;
 }
 
-int CALLBACK WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow )
+Transform::~Transform()
 {
-	UNREFERENCED_PARAMETER( nCmdShow );
-	UNREFERENCED_PARAMETER( lpCmdLine );
-	UNREFERENCED_PARAMETER( hPrevInstance );
-	UNREFERENCED_PARAMETER( hInstance );
 
-	Go();
-	return 0;
+}
+
+glm::mat4 Transform::GetModelMatrix()
+{
+	glm::mat4 _x, _y, _z;
+	_x = glm::rotate( m_rotation.x, glm::vec3( 1.0f, 0.0f, 0.0f ) );
+	_y = glm::rotate( m_rotation.y, glm::vec3( 0.0f, 1.0f, 0.0f ) );
+	_z = glm::rotate( m_rotation.z, glm::vec3( 0.0f, 0.0f, 1.0f ) );
+
+	glm::mat4 t = glm::translate( m_position );
+	glm::mat4 r = _x * _y * _z;
+	return t * r;
+}
+
+glm::vec3* Transform::Position()
+{
+	return &m_position;
+}
+
+glm::vec3* Transform::Rotation()
+{
+	return &m_rotation;
 }

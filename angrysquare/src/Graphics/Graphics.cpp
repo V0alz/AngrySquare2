@@ -56,6 +56,7 @@ bool Graphics::InitGL()
 		{
 			std::cout << "Failed to find requested version OpenGL version.\nErrors may occur..." << std::endl;
 		}
+
 		glClearColor( 0.0f, 0.0f, 0.3f, 1.0f );
 		glEnable( GL_DEPTH_TEST );
 		glEnable( GL_CULL_FACE ); // cull back faces of sprites.
@@ -70,6 +71,7 @@ bool Graphics::InitGL()
 			delete m_shader;
 			return false;
 		}
+		m_shader->AddUniform( "_model" );
 
 		m_isReady = true;
 		delete settings;

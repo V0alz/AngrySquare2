@@ -23,11 +23,11 @@ Sprite::Sprite()
 	m_mesh = nullptr;
 }
 
-Sprite::Sprite( glm::vec2 dimensions )
+Sprite::Sprite( glm::vec2 dimensions, GLuint tex )
 {
 	m_mesh = nullptr;
 	m_mesh = new Mesh();
-	Set( dimensions );
+	Set( dimensions, tex );
 }
 
 Sprite::~Sprite()
@@ -37,25 +37,28 @@ Sprite::~Sprite()
 		delete m_mesh;
 		m_mesh = nullptr;
 	}
+	glDeleteTextures( 1, &m_texture );
 }
 
-void Sprite::Set( glm::vec2 dimensions )
+void Sprite::Set( glm::vec2 dimensions, GLuint tex )
 {
 	MeshData data;
 	float _x = dimensions.x / 2;
 	float _y = dimensions.y / 2;
 
-	data.Set( glm::vec2( -_x, +_y ) );
-	data.Set( glm::vec2( +_x, +_y ) );
-	data.Set( glm::vec2( +_x, -_y ) );
-	data.Set( glm::vec2( -_x, -_y ) );
+	data.Set( glm::vec2( -_x, +_y ), glm::vec2( 0.0f, 1.0f ) );
+	data.Set( glm::vec2( +_x, +_y ), glm::vec2( 1.0f, 1.0f ) );
+	data.Set( glm::vec2( +_x, -_y ), glm::vec2( 1.0f, 0.0f ) );
+	data.Set( glm::vec2( -_x, -_y ), glm::vec2( 0.0f, 0.0f ) );
 	data.AddFace( glm::ivec3( 0, 1, 2 ) );
 	data.AddFace( glm::ivec3( 2, 3, 0 ) );
 
 	m_mesh->Set( data );
+	m_texture = tex;
 }
 
 void Sprite::Draw()
 {
+	glBindTexture( GL_TEXTURE_2D, m_texture );
 	m_mesh->Draw();
 }

@@ -68,6 +68,17 @@ bool Shader::Create()
 	return true;
 }
 
+void Shader::AddUniform( const std::string& name )
+{
+	unsigned int l = glGetUniformLocation( m_program, name.c_str() );
+	m_uniforms.emplace( name, l );
+}
+
+void Shader::SetUniform( const std::string& name, const glm::mat4 value )
+{
+	glUniformMatrix4fv( m_uniforms.at( name ), 1, GL_FALSE, &value[0][0] );
+}
+
 bool Shader::CheckError( GLuint shader, bool lnkchk )
 {
 	switch( lnkchk )

@@ -17,6 +17,7 @@
 */
 #pragma once
 
+#include "Graphics\Shader.hpp"
 #include "Square.hpp"
 
 class Game
@@ -24,7 +25,7 @@ class Game
 public:
 	Game();
 	~Game();
-	void Frame();
+	void Frame( Shader& shader );
 
 private:
 	Square* square;

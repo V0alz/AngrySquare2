@@ -16,10 +16,12 @@
 *	along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
 #include "Square.hpp"
+#include "./Graphics/Loader/BMP.hpp"
 
 Square::Square()
+	:m_transform( glm::vec3( -0.8f, -0.6f, 0.0f ), glm::vec3( 0.0f, 0.0f, 0.0f ) )
 {
-	m_sprite = new Sprite( glm::vec2( 0.1f, 0.1f ) );
+	m_sprite = new Sprite( glm::vec2( 0.22f, 0.22f ), BMP::Load( "./res/tex/player.bmp" ) );
 }
 
 Square::~Square()
@@ -36,7 +38,8 @@ void Square::Update()
 	// extend square and use this func for player controls & ai respectivly
 }
 
-void Square::Render()
+void Square::Render( Shader& shader )
 {
+	shader.SetUniform( "_model", m_transform.GetModelMatrix() );
 	m_sprite->Draw();
 }

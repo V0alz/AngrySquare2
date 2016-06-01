@@ -20,6 +20,8 @@
 #include <GL\glew.h>
 #include <GLFW\glfw3.h>
 #include <string>
+#include <unordered_map>
+#include <glm\glm.hpp>
 
 class Shader
 {
@@ -29,10 +31,14 @@ public:
 	void Bind();
 	virtual bool Create(); // TODO: rewrite me
 
+	void AddUniform( const std::string& name );
+	void SetUniform( const std::string& name, const glm::mat4 value );
+
 protected:
 	bool CheckError( GLuint shader, bool lnkchk = false );
 	std::string LoadFromFile( std::string file );
 
 private:
 	GLuint m_program;
+	std::unordered_map<std::string, unsigned int> m_uniforms;
 };

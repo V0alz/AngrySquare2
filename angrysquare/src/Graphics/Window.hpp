@@ -28,6 +28,7 @@ public:
 	static void Clear();
 	static void SwapBuffers();
 	static bool ShouldExit();
+	static GLFWwindow* GetWindow();
 
 private:
 	static GLFWwindow* m_window;

@@ -16,32 +16,45 @@
 *	along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
 #include <Windows.h>
-#include "./System/System.hpp"
-#include <iostream>
+#include "Input.hpp"
 
-void Go()
+bool Input::m_keys[300] = { false };
+
+void Input::Init()
 {
-	System* sys = new System();
-	sys->Start( true );
-	delete sys;
+	for( int c = 0; c < 300; c++ )
+	{
+		m_keys[c] = false;
+	}
+
+	glfwSetKeyCallback( Window::GetWindow(), &cb_key );
 }
 
-int main( int argc, char* argv[] )
+bool Input::Get( int keycode )
 {
-	UNREFERENCED_PARAMETER( argc );
-	UNREFERENCED_PARAMETER( argv );
-
-	Go();
-	return 0;
+	return m_keys[keycode];
 }
 
-int CALLBACK WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow )
+void Input::Set( int keycode, int action )
 {
-	UNREFERENCED_PARAMETER( nCmdShow );
-	UNREFERENCED_PARAMETER( lpCmdLine );
-	UNREFERENCED_PARAMETER( hPrevInstance );
-	UNREFERENCED_PARAMETER( hInstance );
+	switch( action )
+	{
+	case GLFW_PRESS:
+		m_keys[keycode] = true;
+		break;
+	case GLFW_RELEASE:
+		m_keys[keycode] = false;
+		break;
+	case GLFW_KEY_UNKNOWN:
+	default:
+		break;
+	}
+}
 
-	Go();
-	return 0;
+void Input::cb_key( GLFWwindow* window, int key, int scancode, int action, int mods )
+{
+	UNREFERENCED_PARAMETER( window );
+	UNREFERENCED_PARAMETER( scancode );
+	UNREFERENCED_PARAMETER( mods );
+	Set( key, action );
 }

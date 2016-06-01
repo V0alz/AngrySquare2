@@ -72,5 +72,17 @@ void Window::SwapBuffers()
 bool Window::ShouldExit()
 {
 	// fix this funcing error
-	return static_cast<int>(glfwWindowShouldClose( m_window ));
+	if( !glfwWindowShouldClose( m_window ) )
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
+
+GLFWwindow* Window::GetWindow()
+{
+	return m_window;
 }

@@ -18,6 +18,7 @@
 #pragma once
 
 #include <vector>
+#pragma warning( disable : 4201 ) // this is to hide GLM warnings, easy temp fix tho.
 #include <glm\glm.hpp>
 
 struct MeshData

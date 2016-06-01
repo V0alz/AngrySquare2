@@ -28,7 +28,7 @@ public:
 	bool InitGL();
 	void Destroy();
 
-	Shader* GetShader() { return m_shader; }
+	inline Shader* GetShader() { return m_shader; }
 
 private:
 	bool m_isReady;

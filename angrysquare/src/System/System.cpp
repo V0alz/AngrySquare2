@@ -17,6 +17,7 @@
 */
 #include "System.hpp"
 #include "SysState.hpp"
+#include "Input.hpp"
 
 System::System()
 {
@@ -68,6 +69,7 @@ void System::Run()
 				SysState::Set( SysState::States::STATE_CLEANUP );
 			}
 			m_gfx->InitGL();
+			Input::Init();
 			m_game = new Game();
 			SysState::Set( SysState::States::STATE_PLAYING );
 			break; 
@@ -81,7 +83,7 @@ void System::Run()
 			}
 
 			m_gfx->GetShader()->Bind();
-			m_game->Frame();
+			m_game->Frame( *m_gfx->GetShader() );
 			break;
 		}
 		case SysState::States::STATE_CLEANUP:

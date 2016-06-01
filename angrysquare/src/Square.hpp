@@ -21,6 +21,8 @@
 #include <GLFW\glfw3.h>
 
 #include "Graphics\Sprite.hpp"
+#include "Graphics\Transform.hpp"
+#include "Graphics\Shader.hpp"
 
 class Square
 {
@@ -28,8 +30,9 @@ public:
 	Square();
 	virtual ~Square();
 	virtual void Update(); // extend square and use this func for player controls & ai respectivly
-	void Render();
+	void Render( Shader& shader );
 
 private:
 	Sprite* m_sprite;
+	Transform m_transform;
 };
