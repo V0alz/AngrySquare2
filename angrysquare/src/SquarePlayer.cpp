@@ -15,34 +15,30 @@
 *	You should have received a copy of the GNU General Public License
 *	along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-#include "Square.hpp"
+#include "SquarePlayer.hpp"
+#include "System\Input.hpp"
 #include "./Graphics/Loader/BMP.hpp"
 
-Square::Square()
-	:m_transform( glm::vec3() )
+SquarePlayer::SquarePlayer( const std::string& tex )
 {
+	m_sprite = new Sprite( glm::vec2( 0.22f, 0.22f ), BMP::Load( tex ) );
+	m_transform.Position( glm::vec3( 0.8f, 0.6f, 0.0f ) );
 }
 
-Square::Square( const std::string& texPath )
-	:m_transform( glm::vec3( -0.8f, -0.6f, 0.0f ), glm::vec3( 0.0f, 0.0f, 0.0f ) )
+SquarePlayer::~SquarePlayer()
 {
-	m_sprite = new Sprite( glm::vec2( 0.22f, 0.22f ), BMP::Load( texPath ) );
+
 }
 
-Square::~Square()
+void SquarePlayer::Update()
 {
-	if( m_sprite != nullptr )
+	glm::vec3 pos;
+	pos = m_transform.Position();
+
+	if( Input::Get( GLFW_KEY_W ) )
 	{
-		delete m_sprite;
-		m_sprite = nullptr;
+		pos.y += 0.003f;
 	}
-}
 
-void Square::Update()
-{}
-
-void Square::Render( Shader& shader )
-{
-	shader.SetUniform( "_model", m_transform.GetModelMatrix() );
-	m_sprite->Draw();
+	m_transform.Position( pos );
 }

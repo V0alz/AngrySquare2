@@ -28,11 +28,12 @@ class Square
 {
 public:
 	Square();
+	Square( const std::string& texPath );
 	virtual ~Square();
 	virtual void Update(); // extend square and use this func for player controls & ai respectivly
 	void Render( Shader& shader );
 
-private:
+public:
 	Sprite* m_sprite;
 	Transform m_transform;
 };

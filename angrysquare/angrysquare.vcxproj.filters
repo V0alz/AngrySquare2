@@ -63,6 +63,9 @@
     <ClCompile Include="src\System\Input.cpp">
       <Filter>Source Files\System</Filter>
     </ClCompile>
+    <ClCompile Include="src\SquarePlayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.hpp">
@@ -106,6 +109,9 @@
     </ClInclude>
     <ClInclude Include="src\System\Input.hpp">
       <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SquarePlayer.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

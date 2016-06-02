@@ -26,10 +26,10 @@ public:
 	Transform();
 	Transform( glm::vec3 position = glm::vec3( 0.0f, 0.0f, 0.0f ), glm::vec3 rotation = glm::vec3( 0.0f, 0.0f, 0.0f ) );
 	~Transform();
-
 	glm::mat4 GetModelMatrix();
 
-	inline glm::vec3* Position();
+	glm::vec3& Position( void );
+	void Position( const glm::vec3& pos );
 	inline glm::vec3* Rotation();
 
 private:

@@ -15,34 +15,16 @@
 *	You should have received a copy of the GNU General Public License
 *	along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
+#pragma once
+
 #include "Square.hpp"
-#include "./Graphics/Loader/BMP.hpp"
 
-Square::Square()
-	:m_transform( glm::vec3() )
+class SquarePlayer : public Square
 {
-}
+public:
+	SquarePlayer( const std::string& tex = "./res/tex/player.bmp" );
+	~SquarePlayer();
+	virtual void Update() override;
 
-Square::Square( const std::string& texPath )
-	:m_transform( glm::vec3( -0.8f, -0.6f, 0.0f ), glm::vec3( 0.0f, 0.0f, 0.0f ) )
-{
-	m_sprite = new Sprite( glm::vec2( 0.22f, 0.22f ), BMP::Load( texPath ) );
-}
-
-Square::~Square()
-{
-	if( m_sprite != nullptr )
-	{
-		delete m_sprite;
-		m_sprite = nullptr;
-	}
-}
-
-void Square::Update()
-{}
-
-void Square::Render( Shader& shader )
-{
-	shader.SetUniform( "_model", m_transform.GetModelMatrix() );
-	m_sprite->Draw();
-}
+private:
+};

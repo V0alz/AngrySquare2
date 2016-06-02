@@ -17,10 +17,11 @@
 */
 #include "Game.hpp"
 #include "System/Input.hpp"
+#include "SquarePlayer.hpp"
 
 Game::Game()
 {
-	square = new Square();
+	square = new SquarePlayer();
 }
 
 Game::~Game()
@@ -31,6 +32,7 @@ Game::~Game()
 
 void Game::Frame( Shader& shader )
 {
+	square->Update();
 	if( !Input::Get( GLFW_KEY_SPACE ) )
 	{
 		square->Render( shader );

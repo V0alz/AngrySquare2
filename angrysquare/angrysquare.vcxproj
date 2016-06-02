@@ -157,6 +157,7 @@
     <ClCompile Include="src\Graphics\Window.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Square.cpp" />
+    <ClCompile Include="src\SquarePlayer.cpp" />
     <ClCompile Include="src\System\Input.cpp" />
     <ClCompile Include="src\System\System.cpp" />
   </ItemGroup>
@@ -172,6 +173,7 @@
     <ClInclude Include="src\Graphics\Window.hpp" />
     <ClInclude Include="src\Graphics\WindowsSettings.hpp" />
     <ClInclude Include="src\Square.hpp" />
+    <ClInclude Include="src\SquarePlayer.hpp" />
     <ClInclude Include="src\System\Input.hpp" />
     <ClInclude Include="src\System\SysState.hpp" />
     <ClInclude Include="src\System\System.hpp" />

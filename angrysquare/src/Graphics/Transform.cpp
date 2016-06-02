@@ -47,9 +47,14 @@ glm::mat4 Transform::GetModelMatrix()
 	return t * r;
 }
 
-glm::vec3* Transform::Position()
+glm::vec3& Transform::Position( void )
 {
-	return &m_position;
+	return m_position;
+}
+
+void Transform::Position( const glm::vec3& pos )
+{
+	m_position = pos;
 }
 
 glm::vec3* Transform::Rotation()
