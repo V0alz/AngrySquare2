@@ -15,13 +15,20 @@
 *	You should have received a copy of the GNU General Public License
 *	along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
+#include <Windows.h>
 #include "System.hpp"
 #include "SysState.hpp"
 #include "Input.hpp"
+#include "Time.hpp"
+#include "../Graphics/Camera.hpp"
+#include "../Graphics/Loader/GCF.hpp"
+
+#include <iostream>
 
 System::System()
 {
 	m_running = false;
+	m_settings = GCF::Load();
 	m_gfx = nullptr;
 	m_game = nullptr;
 }
@@ -57,46 +64,55 @@ void System::Stop()
 
 void System::Run()
 {
+	const double frameTime = 1.0 / m_settings.m_fps;
+	Time::SetDelta( frameTime );
+	Timer lastTime = Time::GetTime();
+	double unprocessed = 0;
+	double frameTimer = 0;
+	int frames = 0;
+
+	bool doRender = false;
+
 	do
 	{
-		switch( SysState::Get() )
+		doRender = false;
+		Timer startTime = Time::GetTime();
+		Timer passedTime = startTime - lastTime;
+		lastTime = startTime;
+
+		unprocessed += passedTime;
+		frameTimer += passedTime;
+
+		if( frameTimer >= 1.0 )
 		{
-		case SysState::States::STATE_STARTUP:
-		{
-			m_gfx = new Graphics();
-			if( !m_gfx )
-			{
-				SysState::Set( SysState::States::STATE_CLEANUP );
-			}
-			m_gfx->InitGL();
-			Input::Init();
-			m_game = new Game();
-			SysState::Set( SysState::States::STATE_PLAYING );
-			break; 
+#ifdef _DEBUG 
+			std::cout << frames << " " << passedTime << std::endl;
+#endif
+			frames = 0;
+			frameTimer = 0;
 		}
-		case SysState::States::STATE_PLAYING:
+
+		while( unprocessed > frameTime )
+		{
+			glfwPollEvents();
+			Update();
+
+			doRender = true;
+
+			unprocessed -= frameTime;
+		}
+
+		if( doRender )
 		{
 			Window::Clear();
-			if( Window::ShouldExit() )
-			{
-				SysState::Set( SysState::States::STATE_CLEANUP );
-			}
-
-			m_gfx->GetShader()->Bind();
-			m_game->Frame( *m_gfx->GetShader() );
-			break;
+			Render();
+			Window::SwapBuffers();
+			frames++;
 		}
-		case SysState::States::STATE_CLEANUP:
+		else
 		{
-			Clean();
-			return;
+			Sleep( 1 );
 		}
-		default:
-			break;
-		}
-
-		Window::SwapBuffers();
-		glfwPollEvents();
 	}
 	while( m_running );
 }
@@ -116,4 +132,56 @@ void System::Clean()
 	}
 
 	Stop();
+}
+
+void System::Update()
+{
+	switch( SysState::Get() )
+	{
+	case SysState::States::STATE_STARTUP:
+	{
+		m_gfx = new Graphics();
+		if( !m_gfx )
+		{
+			SysState::Set( SysState::States::STATE_CLEANUP );
+		}
+		m_gfx->InitGL( m_settings );
+		Input::Init();
+		m_game = new Game();
+		SysState::Set( SysState::States::STATE_PLAYING );
+		break;
+	}
+	case SysState::States::STATE_PLAYING:
+	{
+		if( Window::ShouldExit() )
+		{
+			SysState::Set( SysState::States::STATE_CLEANUP );
+		}
+		m_game->Logic();
+		break;
+	}
+	case SysState::States::STATE_CLEANUP:
+	{
+		Clean();
+		return;
+	}
+	default:
+		break;
+	}
+}
+
+void System::Render()
+{
+	switch( SysState::Get() )
+	{
+	case SysState::States::STATE_PLAYING:
+	{
+		m_game->Frame( *m_gfx );
+		break;
+	}
+	default:
+	case SysState::States::STATE_CLEANUP:
+	case SysState::States::STATE_STARTUP:
+		break;
+	}
 }

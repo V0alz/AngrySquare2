@@ -24,8 +24,9 @@ Square::Square()
 }
 
 Square::Square( const std::string& texPath )
-	:m_transform( glm::vec3( -0.8f, -0.6f, 0.0f ), glm::vec3( 0.0f, 0.0f, 0.0f ) )
+	:m_transform( glm::vec3( 0.0f, 0.0f, 0.0f ), glm::vec3( 0.0f, 0.0f, 0.0f ) )
 {
+	std::cout << "This constructor is a bad way at making \"Squares\"...\nLook at SquaresPlayer.*pp" << std::endl;
 	m_sprite = new Sprite( glm::vec2( 0.22f, 0.22f ), BMP::Load( texPath ) );
 }
 
@@ -39,7 +40,8 @@ Square::~Square()
 }
 
 void Square::Update()
-{}
+{
+}
 
 void Square::Render( Shader& shader )
 {

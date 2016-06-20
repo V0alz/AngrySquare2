@@ -21,6 +21,7 @@
 Sprite::Sprite()
 {
 	m_mesh = nullptr;
+	m_mesh = new Mesh();
 }
 
 Sprite::Sprite( glm::vec2 dimensions, GLuint tex )
@@ -53,6 +54,12 @@ void Sprite::Set( glm::vec2 dimensions, GLuint tex )
 	data.AddFace( glm::ivec3( 0, 1, 2 ) );
 	data.AddFace( glm::ivec3( 2, 3, 0 ) );
 
+	m_mesh->Set( data );
+	m_texture = tex;
+}
+
+void Sprite::Set( MeshData& data, GLuint tex )
+{
 	m_mesh->Set( data );
 	m_texture = tex;
 }

@@ -22,20 +22,15 @@ struct WindowSettings
 	int m_width;
 	int m_height;
 	bool m_fullscreen;
+	bool m_vsync;
+	char m_fps;
 
-	WindowSettings( bool loadSaved = false )
+	WindowSettings()
 	{
-		// Default window settings incase none are provided.
-		// Remove default constructor in future.
-		if( !loadSaved )
-		{
-			m_width = 800;
-			m_height = 600;
-			m_fullscreen = false;
-		}
-		else
-		{
-			// load saved data
-		}
+		m_width = 800;
+		m_height = 600;
+		m_fullscreen = false;
+		m_vsync = false;
+		m_fps = 30;
 	}
 };

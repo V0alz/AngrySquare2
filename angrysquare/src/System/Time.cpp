@@ -15,23 +15,22 @@
 *	You should have received a copy of the GNU General Public License
 *	along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-#pragma once
+#include "Time.hpp"
 
-#include <GLFW\glfw3.h>
-#include "../Graphics/Window.hpp"
+std::chrono::system_clock::time_point Time::m_epoch = std::chrono::system_clock::now();
+double Time::m_delta = 0.0;
 
-#define NUM_OF_KEYS 434
-
-class Input
+double Time::GetTime()
 {
-public:
-	static void Init();
-	static bool Get( int keycode );
-	inline static void Set( int keycode, int action );
+	return std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now() - m_epoch).count() / 1000000000.0;
+}
 
-private:
-	static void cb_key( GLFWwindow* window, int key, int scancode, int action, int mods );
+double Time::GetDelta()
+{
+	return m_delta;
+}
 
-private:
-	static bool m_keys[NUM_OF_KEYS];
-};
+void Time::SetDelta( double val )
+{
+	Time::m_delta = val;
+}

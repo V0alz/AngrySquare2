@@ -29,6 +29,8 @@ int Window::Create( WindowSettings* settings )
 		return 1;
 	}
 
+	glfwWindowHint( GLFW_RESIZABLE, GL_FALSE );
+
 	glfwWindowHint( GLFW_SAMPLES, 4 );
 	glfwWindowHint( GLFW_CONTEXT_VERSION_MAJOR, 3 );
 	glfwWindowHint( GLFW_CONTEXT_VERSION_MINOR, 3 );
@@ -43,19 +45,22 @@ int Window::Create( WindowSettings* settings )
 	{
 		m_window = glfwCreateWindow( settings->m_width, settings->m_height, "Angry Square 2", NULL, NULL );
 	}
-	glfwMakeContextCurrent( m_window );
 	
 	if( !m_window )
 	{
 		std::cout << "Failed to create window" << std::endl;
 		return 2;
 	}
+	glfwMakeContextCurrent( m_window );
+
+	glfwSwapInterval( static_cast<int>(settings->m_vsync) );
 
 	return 0;
 }
 
 void Window::Destroy()
 {
+	glfwDestroyWindow( m_window );
 	glfwTerminate();
 }
 

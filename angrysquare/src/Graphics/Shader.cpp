@@ -35,11 +35,11 @@ void Shader::Bind()
 }
 
 // TODO: rewrite me
-bool Shader::Create()
+bool Shader::Create( const std::string& filename )
 {
 	GLuint vertex;
 	vertex = glCreateShader( GL_VERTEX_SHADER );
-	std::string src = LoadFromFile( "./res/shader/shader.v.glsl" );
+	std::string src = LoadFromFile( std::string( "./res/shader/" + filename + ".v.glsl" ) );
 	const char* v = src.c_str();
 	glShaderSource( vertex, 1, &v, NULL );
 	glCompileShader( vertex );
@@ -50,7 +50,7 @@ bool Shader::Create()
 
 	GLuint fragment;
 	fragment = glCreateShader( GL_FRAGMENT_SHADER );
-	src = LoadFromFile( "./res/shader/shader.f.glsl" );
+	src = LoadFromFile( std::string( "./res/shader/" + filename + ".f.glsl" ) );
 	const char* f = src.c_str();
 	glShaderSource( fragment, 1, &f, NULL );
 	glCompileShader( fragment );

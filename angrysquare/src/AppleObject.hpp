@@ -17,21 +17,33 @@
 */
 #pragma once
 
-#include <GLFW\glfw3.h>
-#include "../Graphics/Window.hpp"
+#include "BaseObject.hpp"
+#include "Graphics\Shader.hpp"
 
-#define NUM_OF_KEYS 434
-
-class Input
+class AppleObject : public BaseObject
 {
 public:
-	static void Init();
-	static bool Get( int keycode );
-	inline static void Set( int keycode, int action );
+	AppleObject( Sprite* sprite )
+	{
+		//BaseObject( sprite );
+		m_sprite = sprite;
+	}
+
+	~AppleObject()
+	{
+	}
+
+	virtual void Update()
+	{
+
+	}
+
+	virtual void Draw( Shader& shader )
+	{
+		shader.SetUniform( "_model", m_transformation.GetModelMatrix() );
+		m_sprite->Draw();
+	}
 
 private:
-	static void cb_key( GLFWwindow* window, int key, int scancode, int action, int mods );
 
-private:
-	static bool m_keys[NUM_OF_KEYS];
 };

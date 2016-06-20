@@ -17,21 +17,37 @@
 */
 #pragma once
 
+#include <map>
+#include <gl\glew.h>
 #include <GLFW\glfw3.h>
-#include "../Graphics/Window.hpp"
+#include <glm\glm.hpp>
 
-#define NUM_OF_KEYS 434
+// PERSONAL NOTE: Move freetype stuff to deps folder.
+#include <ft2build.h>
+#include FT_FREETYPE_H
 
-class Input
+#include "Transform.hpp"
+#include "Shader.hpp"
+
+struct Char
+{
+	GLuint m_texID;
+	glm::ivec2 m_size;
+	glm::vec2 m_offset;
+	FT_Pos m_advance;
+};
+
+class Text
 {
 public:
-	static void Init();
-	static bool Get( int keycode );
-	inline static void Set( int keycode, int action );
+	static bool Init( Shader& shader );
+	static void Destroy();
+	static void Render( const std::string& text, float x, float y, float scale );
 
 private:
-	static void cb_key( GLFWwindow* window, int key, int scancode, int action, int mods );
-
-private:
-	static bool m_keys[NUM_OF_KEYS];
+	static std::map<GLchar, Char> m_chars;
+	static Transform m_transformation;
+	static Shader* m_shader;
+	static GLuint m_VAO;
+	static GLuint m_VBO;
 };

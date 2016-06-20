@@ -17,21 +17,16 @@
 */
 #pragma once
 
-#include <GLFW\glfw3.h>
-#include "../Graphics/Window.hpp"
+#include "Transform.hpp"
 
-#define NUM_OF_KEYS 434
-
-class Input
+class Camera
 {
 public:
 	static void Init();
-	static bool Get( int keycode );
-	inline static void Set( int keycode, int action );
+	static glm::mat4 GetProjection();
+	static glm::mat4 GetView();
 
 private:
-	static void cb_key( GLFWwindow* window, int key, int scancode, int action, int mods );
-
-private:
-	static bool m_keys[NUM_OF_KEYS];
+	static glm::vec3 m_position;
+	static glm::mat4 m_projection;
 };

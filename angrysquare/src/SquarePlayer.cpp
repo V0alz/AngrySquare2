@@ -17,27 +17,41 @@
 */
 #include "SquarePlayer.hpp"
 #include "System\Input.hpp"
-#include "./Graphics/Loader/BMP.hpp"
+#include "Graphics\Loader\BMP.hpp"
+#include "System\Time.hpp"
 
 SquarePlayer::SquarePlayer( const std::string& tex )
 {
-	m_sprite = new Sprite( glm::vec2( 0.22f, 0.22f ), BMP::Load( tex ) );
-	m_transform.Position( glm::vec3( 0.8f, 0.6f, 0.0f ) );
+	m_sprite = new Sprite( glm::vec2( 0.5f, 0.5f ), BMP::Load( tex ) );
+	m_transform.Position( glm::vec3( 0.0f, 0.0f, 0.0f ) );
 }
 
 SquarePlayer::~SquarePlayer()
 {
-
 }
 
 void SquarePlayer::Update()
 {
+	double _delta = Time::GetDelta();
 	glm::vec3 pos;
 	pos = m_transform.Position();
 
 	if( Input::Get( GLFW_KEY_W ) )
 	{
-		pos.y += 0.003f;
+		pos.y += static_cast<float>(0.4f * _delta);
+	}
+	if( Input::Get( GLFW_KEY_S ) )
+	{
+		pos.y -= static_cast<float>(0.4f * _delta);
+	}
+
+	if( Input::Get( GLFW_KEY_A ) )
+	{
+		pos.x -= static_cast<float>(0.4f * _delta);
+	}
+	if( Input::Get( GLFW_KEY_D ) )
+	{
+		pos.x += static_cast<float>(0.4f * _delta);
 	}
 
 	m_transform.Position( pos );

@@ -88,13 +88,14 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;GLFW_DLL;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\CLibs\glm;C:\CLibs\glew-1.13.0\include;C:\CLibs\glfw-3.1.2.bin.WIN32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Dennis\Downloads\freetype-2.6.3\include;C:\CLibs\glm;C:\CLibs\glew-1.13.0\include;C:\CLibs\glfw-3.1.2.bin.WIN32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>GLFW3dll.lib;GLEW32.lib;OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\CLibs\glew-1.13.0\lib\Release\Win32;C:\CLibs\glfw-3.1.2.bin.WIN32\lib-vc2015</AdditionalLibraryDirectories>
+      <AdditionalDependencies>GLFW3dll.lib;GLEW32.lib;OpenGL32.lib;freetype263MTd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\Dennis\Downloads\freetype-2.6.3\objs\vc2010\Win32;C:\CLibs\glew-1.13.0\lib\Release\Win32;C:\CLibs\glfw-3.1.2.bin.WIN32\lib-vc2015</AdditionalLibraryDirectories>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -119,15 +120,16 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;GLFW_DLL;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\CLibs\glm;C:\CLibs\glew-1.13.0\include;C:\CLibs\glfw-3.1.2.bin.WIN32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Dennis\Downloads\freetype-2.6.3\include;C:\CLibs\glm;C:\CLibs\glew-1.13.0\include;C:\CLibs\glfw-3.1.2.bin.WIN32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>GLFW3dll.lib;GLEW32.lib;OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\CLibs\glew-1.13.0\lib\Release\Win32;C:\CLibs\glfw-3.1.2.bin.WIN32\lib-vc2015</AdditionalLibraryDirectories>
+      <AdditionalDependencies>GLFW3dll.lib;GLEW32.lib;OpenGL32.lib;freetype263MT.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\Dennis\Downloads\freetype-2.6.3\objs\vc2010\Win32;C:\CLibs\glew-1.13.0\lib\Release\Win32;C:\CLibs\glfw-3.1.2.bin.WIN32\lib-vc2015</AdditionalLibraryDirectories>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -149,38 +151,51 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\Graphics\Camera.cpp" />
     <ClCompile Include="src\Graphics\Graphics.cpp" />
     <ClCompile Include="src\Graphics\Mesh.cpp" />
     <ClCompile Include="src\Graphics\Shader.cpp" />
     <ClCompile Include="src\Graphics\Sprite.cpp" />
+    <ClCompile Include="src\Graphics\Text.cpp" />
     <ClCompile Include="src\Graphics\Transform.cpp" />
     <ClCompile Include="src\Graphics\Window.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Square.cpp" />
     <ClCompile Include="src\SquarePlayer.cpp" />
     <ClCompile Include="src\System\Input.cpp" />
+    <ClCompile Include="src\System\Menu.cpp" />
     <ClCompile Include="src\System\System.cpp" />
+    <ClCompile Include="src\System\Time.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\AppleObject.hpp" />
+    <ClInclude Include="src\BaseObject.hpp" />
     <ClInclude Include="src\Game.hpp" />
+    <ClInclude Include="src\Graphics\Camera.hpp" />
     <ClInclude Include="src\Graphics\Graphics.hpp" />
     <ClInclude Include="src\Graphics\Loader\BMP.hpp" />
+    <ClInclude Include="src\Graphics\Loader\GCF.hpp" />
     <ClInclude Include="src\Graphics\Mesh.hpp" />
     <ClInclude Include="src\Graphics\MeshData.hpp" />
     <ClInclude Include="src\Graphics\Shader.hpp" />
     <ClInclude Include="src\Graphics\Sprite.hpp" />
+    <ClInclude Include="src\Graphics\Text.hpp" />
     <ClInclude Include="src\Graphics\Transform.hpp" />
     <ClInclude Include="src\Graphics\Window.hpp" />
     <ClInclude Include="src\Graphics\WindowsSettings.hpp" />
     <ClInclude Include="src\Square.hpp" />
     <ClInclude Include="src\SquarePlayer.hpp" />
     <ClInclude Include="src\System\Input.hpp" />
+    <ClInclude Include="src\System\Menu.hpp" />
     <ClInclude Include="src\System\SysState.hpp" />
     <ClInclude Include="src\System\System.hpp" />
+    <ClInclude Include="src\System\Time.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shader\shader.f.glsl" />
     <None Include="res\shader\shader.v.glsl" />
+    <None Include="res\shader\text.v.glsl" />
+    <None Include="res\shader\text.f.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

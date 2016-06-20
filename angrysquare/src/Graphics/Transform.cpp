@@ -38,13 +38,13 @@ Transform::~Transform()
 glm::mat4 Transform::GetModelMatrix()
 {
 	glm::mat4 _x, _y, _z;
-	_x = glm::rotate( m_rotation.x, glm::vec3( 1.0f, 0.0f, 0.0f ) );
-	_y = glm::rotate( m_rotation.y, glm::vec3( 0.0f, 1.0f, 0.0f ) );
-	_z = glm::rotate( m_rotation.z, glm::vec3( 0.0f, 0.0f, 1.0f ) );
+	//_x = glm::rotate( m_rotation.x, glm::vec3( 1.0f, 0.0f, 0.0f ) );
+	//_y = glm::rotate( m_rotation.y, glm::vec3( 0.0f, 1.0f, 0.0f ) );
+	//_z = glm::rotate( m_rotation.z, glm::vec3( 0.0f, 0.0f, 1.0f ) );
 
-	glm::mat4 t = glm::translate( m_position );
+	glm::mat4 t = glm::translate( glm::mat4( 1.0f ), m_position );
 	glm::mat4 r = _x * _y * _z;
-	return t * r;
+	return t;
 }
 
 glm::vec3& Transform::Position( void )

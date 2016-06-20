@@ -17,21 +17,38 @@
 */
 #pragma once
 
-#include <GLFW\glfw3.h>
-#include "../Graphics/Window.hpp"
+#include <Windows.h>
+#include "Graphics\Sprite.hpp"
+#include "Graphics\Transform.hpp"
 
-#define NUM_OF_KEYS 434
-
-class Input
+class BaseObject
 {
 public:
-	static void Init();
-	static bool Get( int keycode );
-	inline static void Set( int keycode, int action );
+	BaseObject()
+		:m_transformation( glm::vec3( 0.0f, 0.0f, 0.0f ) )
+	{
+		m_sprite = nullptr;
+	}
 
-private:
-	static void cb_key( GLFWwindow* window, int key, int scancode, int action, int mods );
+	BaseObject( Sprite* sprite )
+		:m_transformation( glm::vec3( 0.0f, 0.0f, 0.0f ) )
+	{
+		m_sprite = sprite;
+	}
 
-private:
-	static bool m_keys[NUM_OF_KEYS];
+	virtual ~BaseObject()
+	{
+		if( m_sprite != nullptr )
+		{
+			delete m_sprite;
+			m_sprite = nullptr;
+		}
+	}
+
+	virtual void Update() {}
+	virtual void Draw( Shader& shader ) { UNREFERENCED_PARAMETER( shader ); }
+
+protected:
+	Sprite* m_sprite;
+	Transform m_transformation;
 };

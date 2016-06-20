@@ -17,16 +17,22 @@
 */
 #pragma once
 
-#include "Graphics\Shader.hpp"
+#include "Graphics\Graphics.hpp"
 #include "Square.hpp"
+#include "Graphics\Text.hpp"
+#include "AppleObject.hpp"
 
 class Game
 {
 public:
 	Game();
 	~Game();
-	void Frame( Shader& shader );
+	virtual void Logic();
+	virtual void Frame( Graphics& gfx );
 
 private:
 	Square* square;
+	BaseObject* apple;
+
+	int score;
 };

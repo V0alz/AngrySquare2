@@ -18,11 +18,11 @@
 #include <Windows.h>
 #include "Input.hpp"
 
-bool Input::m_keys[300] = { false };
+bool Input::m_keys[NUM_OF_KEYS] = { false };
 
 void Input::Init()
 {
-	for( int c = 0; c < 300; c++ )
+	for( int c = 0; c < NUM_OF_KEYS; c++ )
 	{
 		m_keys[c] = false;
 	}

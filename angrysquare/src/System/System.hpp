@@ -32,8 +32,12 @@ protected:
 	void Run();
 	void Clean();
 
+	void Update();
+	void Render();
+
 private:
 	bool m_running;
+	WindowSettings m_settings;
 	Graphics* m_gfx;
 	Game* m_game;
 };

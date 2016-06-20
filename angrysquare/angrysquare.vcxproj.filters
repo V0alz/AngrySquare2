@@ -66,6 +66,18 @@
     <ClCompile Include="src\SquarePlayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\System\Time.cpp">
+      <Filter>Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphics\Text.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphics\Camera.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\System\Menu.cpp">
+      <Filter>Source Files\System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.hpp">
@@ -113,12 +125,39 @@
     <ClInclude Include="src\SquarePlayer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\System\Time.hpp">
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphics\Text.hpp">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphics\Camera.hpp">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BaseObject.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AppleObject.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphics\Loader\GCF.hpp">
+      <Filter>Header Files\Graphics\Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="src\System\Menu.hpp">
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shader\shader.f.glsl">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="res\shader\shader.v.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\shader\text.f.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\shader\text.v.glsl">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

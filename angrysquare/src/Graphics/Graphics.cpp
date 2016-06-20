@@ -17,23 +17,34 @@
 */
 #include "Graphics.hpp"
 #include <iostream>
+#include "Text.hpp"
+#include "Camera.hpp"
+#include "Loader\GCF.hpp"
 
 Graphics::Graphics()
 {
 	m_isReady = false;
-	m_shader = nullptr;
+	for( int i = 0; i < 2; i++ )
+	{
+		m_shader[i] = nullptr;
+	}
 }
 
 Graphics::~Graphics()
 {
-	if( m_shader != nullptr )
+	for( int i = 0; i < 2; i++ )
 	{
-		delete m_shader;
-		m_shader = nullptr;
+		if( m_shader[i] != nullptr )
+		{
+			delete m_shader[i];
+			m_shader[i] = nullptr;
+		}
 	}
+	Window::Destroy();
+	Text::Destroy();
 }
 
-bool Graphics::InitGL()
+bool Graphics::InitGL( WindowSettings& settings )
 {
 	if( m_isReady )
 	{
@@ -41,15 +52,13 @@ bool Graphics::InitGL()
 		return false;
 	}
 
-	WindowSettings* settings = new WindowSettings();
-	if( Window::Create( settings ) == 0 )
+	if( Window::Create( &settings ) == 0 )
 	{
 		glewExperimental = GL_TRUE;
 		GLenum e = glewInit();
 		if( e != GLEW_OK )
 		{
 			std::cout << glewGetErrorString( e ) << std::endl;
-			delete settings;
 			return false;
 		}
 		if( !GLEW_VERSION_3_3 )
@@ -59,37 +68,64 @@ bool Graphics::InitGL()
 
 		glClearColor( 0.0f, 0.0f, 0.3f, 1.0f );
 		glEnable( GL_DEPTH_TEST );
+
+		glEnable( GL_BLEND );
+		glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
+
 		glEnable( GL_CULL_FACE ); // cull back faces of sprites.
 		glCullFace( GL_BACK );
 		glFrontFace( GL_CW );
-		glViewport( -1, 1, 1, -1 ); // keep the default viewport
 
-		m_shader = new Shader();
-		if( !m_shader->Create() )
+		Camera::Init();
+
+		m_shader[0] = new Shader();
+		if( !m_shader[0]->Create( "shader" ) )
 		{
-			delete settings;
-			delete m_shader;
+			delete m_shader[0];
 			return false;
 		}
-		m_shader->AddUniform( "_model" );
+		m_shader[0]->AddUniform( "_model" );
+		m_shader[0]->AddUniform( "_view" );
+		m_shader[0]->AddUniform( "_projection" );
+
+		m_shader[1] = new Shader();
+		if( !m_shader[1]->Create( "text" ) )
+		{
+			delete m_shader[1];
+			return false;
+		}
+		m_shader[1]->AddUniform( "_model" );
+		m_shader[1]->AddUniform( "_view" );
+		m_shader[1]->AddUniform( "_projection" );
+
+		Text::Init( *m_shader[1] );
 
 		m_isReady = true;
-		delete settings;
 		return true;
 	}
 	else
 	{
-		delete settings;
 		return false;
 	}
 }
 
 void Graphics::Destroy()
 {
-	if( m_shader != nullptr )
+	for( int i = 0; i < 2; i++ )
 	{
-		delete m_shader;
-		m_shader = nullptr;
+		if( m_shader[i] != nullptr )
+		{
+			delete m_shader[i];
+			m_shader[i] = nullptr;
+		}
 	}
 	Window::Destroy();
+	Text::Destroy();
+}
+
+void Graphics::RequestShader( const int i )
+{
+	m_shader[i]->Bind();
+	m_shader[i]->SetUniform( "_projection", Camera::GetProjection() );
+	m_shader[i]->SetUniform( "_view", Camera::GetView() );
 }

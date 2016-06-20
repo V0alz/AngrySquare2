@@ -18,13 +18,13 @@
 #pragma once
 
 #include <glm\glm.hpp>
-#include <glm\gtx\transform.hpp>
+#include <glm\gtc\matrix_transform.hpp>
 
 class Transform
 {
 public:
 	Transform();
-	Transform( glm::vec3 position = glm::vec3( 0.0f, 0.0f, 0.0f ), glm::vec3 rotation = glm::vec3( 0.0f, 0.0f, 0.0f ) );
+	Transform( glm::vec3 position, glm::vec3 rotation = glm::vec3( 0.0f, 0.0f, 0.0f ) );
 	~Transform();
 	glm::mat4 GetModelMatrix();
 

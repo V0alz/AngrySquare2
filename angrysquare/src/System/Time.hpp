@@ -17,21 +17,18 @@
 */
 #pragma once
 
-#include <GLFW\glfw3.h>
-#include "../Graphics/Window.hpp"
+#include <chrono>
 
-#define NUM_OF_KEYS 434
+#define Timer double
 
-class Input
+class Time
 {
 public:
-	static void Init();
-	static bool Get( int keycode );
-	inline static void Set( int keycode, int action );
+	static double GetTime();
+	static double GetDelta();
+	static void SetDelta( double val );
 
 private:
-	static void cb_key( GLFWwindow* window, int key, int scancode, int action, int mods );
-
-private:
-	static bool m_keys[NUM_OF_KEYS];
+	static double m_delta;
+	static std::chrono::system_clock::time_point m_epoch;
 };

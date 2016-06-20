@@ -25,12 +25,13 @@ class Graphics
 public:
 	Graphics();
 	virtual ~Graphics();
-	bool InitGL();
+	bool InitGL( WindowSettings& settings );
 	void Destroy();
-
-	inline Shader* GetShader() { return m_shader; }
+	void RequestShader( const int i );
+	
+	inline Shader* GetShader( const int i ) { return m_shader[i]; }
 
 private:
 	bool m_isReady;
-	Shader* m_shader;
+	Shader* m_shader[2];
 };

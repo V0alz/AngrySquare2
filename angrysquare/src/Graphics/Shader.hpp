@@ -29,7 +29,7 @@ public:
 	Shader();
 	~Shader();
 	void Bind();
-	virtual bool Create(); // TODO: rewrite me
+	virtual bool Create( const std::string& filename ); // TODO: rewrite me
 
 	void AddUniform( const std::string& name );
 	void SetUniform( const std::string& name, const glm::mat4 value );

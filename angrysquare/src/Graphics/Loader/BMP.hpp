@@ -17,6 +17,9 @@
 */
 #pragma once
 
+// This define is to check if we're getting the right bmp size.
+#define _SKIP_SIZE
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -63,15 +66,19 @@ public:
 			return 0;
 		}
 
-		data.start = static_cast<int>(data.header[0x0A]);
-		data.width = static_cast<int>(data.header[0x12]);
-		data.height = static_cast<int>(data.header[0x16]);
-		data.size = static_cast<int>(data.header[0x22]);
+		data.start = static_cast<unsigned int>(data.header[0x0A]);
+		data.width = static_cast<unsigned int>(data.header[0x12]);
+		data.height = static_cast<unsigned int>(data.header[0x16]);
+		data.size = static_cast<unsigned int>(data.header[0x22]);
 
+#ifndef _SKIP_SIZE
 		if( data.size == 0 )
 		{
 			data.size = data.width * data.height * 3;
 		}
+#else
+		data.size = data.width * data.height * 3;
+#endif
 
 		if( data.start == 0 )
 		{
@@ -101,7 +108,7 @@ public:
 
 		delete[] image;
 
-		std::cout << "Loaded " << file << std::endl;
+		std::cout << "Loaded Bitmap: " << file << std::endl;
 		return texID;
 	}
 };

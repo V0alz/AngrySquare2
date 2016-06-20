@@ -27,10 +27,12 @@ struct MeshData
 	std::vector<glm::vec2> m_uv;
 	std::vector<unsigned int> m_indices;
 
-	void Set( glm::vec2 vertex, glm::vec2 uv = glm::vec2() )
+	int Set( glm::vec2 vertex, glm::vec2 uv = glm::vec2() )
 	{
 		m_vertex.emplace_back( vertex );
 		m_uv.emplace_back( uv );
+
+		return m_vertex.size();
 	}
 
 	void AddFace( glm::ivec3 face )

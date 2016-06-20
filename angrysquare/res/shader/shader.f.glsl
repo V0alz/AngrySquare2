@@ -10,10 +10,6 @@ void main()
 {
 	vec4 outcol;
 	outcol = texture( tex1, v_uv );
-	if( outcol.xyz == vec3( 0.0, 0.0, 0.0 ) )
-	{
-		discard;
-	}
 
     color = outcol;
 }

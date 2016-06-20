@@ -26,6 +26,7 @@ public:
 	Sprite( glm::vec2 dimensions, GLuint tex );
 	~Sprite();
 	void Set( glm::vec2 dimensions, GLuint tex );
+	void Set( MeshData& data, GLuint tex );
 	void Draw();
 
 private:
