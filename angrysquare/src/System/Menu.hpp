@@ -35,7 +35,7 @@ struct MenuItem
 		m_yOffset = offset;
 	}
 
-	void Draw( int curid )
+	void Draw( unsigned int curid )
 	{
 		glm::vec3 color = glm::vec3( 1.0f, 1.0f, 1.0f );
 		if( m_id == curid )

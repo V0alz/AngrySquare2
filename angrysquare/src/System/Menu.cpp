@@ -42,20 +42,20 @@ Menu::~Menu()
 
 void Menu::Update()
 {
-	static Timer last;
+	static Timer keyLast;
 	Timer keyDelay = Time::GetTime();
-	if( (keyDelay - last) >= 0.25f )
+	if( (keyDelay - keyLast) >= 0.15f )
 	{
 		if( Input::Get( GLFW_KEY_W ) && (m_cursor > 0) )
 		{
 			m_cursor--;
-			last = Time::GetTime();
+			keyLast = Time::GetTime();
 		}
 
 		if( Input::Get( GLFW_KEY_S ) && (m_cursor < m_items.size()-1) )
 		{
 			m_cursor++;
-			last = Time::GetTime();
+			keyLast = Time::GetTime();
 		}
 	}
 
@@ -75,6 +75,11 @@ void Menu::Update()
 		default:
 			break;
 		}
+	}
+
+	if( Input::Get( GLFW_KEY_ESCAPE )  )
+	{
+		//SysState::Set( SysState::States::STATE_CLEANUP );
 	}
 }
 

@@ -16,9 +16,9 @@
 *	along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
 #include "SquarePlayer.hpp"
-#include "System\Input.hpp"
-#include "Graphics\Loader\BMP.hpp"
-#include "System\Time.hpp"
+#include "..\System\Input.hpp"
+#include "..\Graphics\Loader\BMP.hpp"
+#include "..\System\Time.hpp"
 
 SquarePlayer::SquarePlayer( const std::string& tex )
 {

@@ -28,11 +28,14 @@
     <Filter Include="Header Files\Graphics\Loader">
       <UniqueIdentifier>{89314dca-dd46-4acc-8498-4098c02de5ad}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Classic">
+      <UniqueIdentifier>{b8d21b1d-3987-4e38-8625-6de93280be36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Classic">
+      <UniqueIdentifier>{dab9272d-feb2-4848-96c9-a93bcf1daf19}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\System\System.cpp">
       <Filter>Source Files\System</Filter>
     </ClCompile>
@@ -51,20 +54,11 @@
     <ClCompile Include="src\Graphics\Sprite.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="src\Square.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Graphics\Transform.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="src\System\Input.cpp">
       <Filter>Source Files\System</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SquarePlayer.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\System\Time.cpp">
       <Filter>Source Files\System</Filter>
@@ -78,11 +72,20 @@
     <ClCompile Include="src\System\Menu.cpp">
       <Filter>Source Files\System</Filter>
     </ClCompile>
+    <ClCompile Include="src\Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Classic\Game.cpp">
+      <Filter>Source Files\Classic</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Classic\Square.cpp">
+      <Filter>Source Files\Classic</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Classic\SquarePlayer.cpp">
+      <Filter>Source Files\Classic</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Game.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\System\SysState.hpp">
       <Filter>Header Files\System</Filter>
     </ClInclude>
@@ -110,9 +113,6 @@
     <ClInclude Include="src\Graphics\Sprite.hpp">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="src\Square.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Graphics\Loader\BMP.hpp">
       <Filter>Header Files\Graphics\Loader</Filter>
     </ClInclude>
@@ -121,9 +121,6 @@
     </ClInclude>
     <ClInclude Include="src\System\Input.hpp">
       <Filter>Header Files\System</Filter>
-    </ClInclude>
-    <ClInclude Include="src\SquarePlayer.hpp">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\System\Time.hpp">
       <Filter>Header Files\System</Filter>
@@ -134,17 +131,26 @@
     <ClInclude Include="src\Graphics\Camera.hpp">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="src\BaseObject.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\AppleObject.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Graphics\Loader\GCF.hpp">
       <Filter>Header Files\Graphics\Loader</Filter>
     </ClInclude>
     <ClInclude Include="src\System\Menu.hpp">
       <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Classic\AppleObject.hpp">
+      <Filter>Header Files\Classic</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Classic\BaseObject.hpp">
+      <Filter>Header Files\Classic</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Classic\Square.hpp">
+      <Filter>Header Files\Classic</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Classic\SquarePlayer.hpp">
+      <Filter>Header Files\Classic</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Classic\Game.hpp">
+      <Filter>Header Files\Classic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

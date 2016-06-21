@@ -150,7 +150,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\Classic\Game.cpp" />
+    <ClCompile Include="src\Classic\Square.cpp" />
+    <ClCompile Include="src\Classic\SquarePlayer.cpp" />
     <ClCompile Include="src\Graphics\Camera.cpp" />
     <ClCompile Include="src\Graphics\Graphics.cpp" />
     <ClCompile Include="src\Graphics\Mesh.cpp" />
@@ -160,17 +162,17 @@
     <ClCompile Include="src\Graphics\Transform.cpp" />
     <ClCompile Include="src\Graphics\Window.cpp" />
     <ClCompile Include="src\Main.cpp" />
-    <ClCompile Include="src\Square.cpp" />
-    <ClCompile Include="src\SquarePlayer.cpp" />
     <ClCompile Include="src\System\Input.cpp" />
     <ClCompile Include="src\System\Menu.cpp" />
     <ClCompile Include="src\System\System.cpp" />
     <ClCompile Include="src\System\Time.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\AppleObject.hpp" />
-    <ClInclude Include="src\BaseObject.hpp" />
-    <ClInclude Include="src\Game.hpp" />
+    <ClInclude Include="src\Classic\AppleObject.hpp" />
+    <ClInclude Include="src\Classic\BaseObject.hpp" />
+    <ClInclude Include="src\Classic\Game.hpp" />
+    <ClInclude Include="src\Classic\Square.hpp" />
+    <ClInclude Include="src\Classic\SquarePlayer.hpp" />
     <ClInclude Include="src\Graphics\Camera.hpp" />
     <ClInclude Include="src\Graphics\Graphics.hpp" />
     <ClInclude Include="src\Graphics\Loader\BMP.hpp" />
@@ -183,8 +185,6 @@
     <ClInclude Include="src\Graphics\Transform.hpp" />
     <ClInclude Include="src\Graphics\Window.hpp" />
     <ClInclude Include="src\Graphics\WindowsSettings.hpp" />
-    <ClInclude Include="src\Square.hpp" />
-    <ClInclude Include="src\SquarePlayer.hpp" />
     <ClInclude Include="src\System\Input.hpp" />
     <ClInclude Include="src\System\Menu.hpp" />
     <ClInclude Include="src\System\SysState.hpp" />

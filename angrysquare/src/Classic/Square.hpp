@@ -17,38 +17,23 @@
 */
 #pragma once
 
-#include <Windows.h>
-#include "Graphics\Sprite.hpp"
-#include "Graphics\Transform.hpp"
+#include "GL\glew.h"
+#include <GLFW\glfw3.h>
 
-class BaseObject
+#include "..\Graphics\Sprite.hpp"
+#include "..\Graphics\Transform.hpp"
+#include "..\Graphics\Shader.hpp"
+
+class Square
 {
 public:
-	BaseObject()
-		:m_transformation( glm::vec3( 0.0f, 0.0f, 0.0f ) )
-	{
-		m_sprite = nullptr;
-	}
+	Square();
+	Square( const std::string& texPath );
+	virtual ~Square();
+	virtual void Update(); // extend square and use this func for player controls & ai respectivly
+	void Render( Shader& shader );
 
-	BaseObject( Sprite* sprite )
-		:m_transformation( glm::vec3( 0.0f, 0.0f, 0.0f ) )
-	{
-		m_sprite = sprite;
-	}
-
-	virtual ~BaseObject()
-	{
-		if( m_sprite != nullptr )
-		{
-			delete m_sprite;
-			m_sprite = nullptr;
-		}
-	}
-
-	virtual void Update() {}
-	virtual void Draw( Shader& shader ) { UNREFERENCED_PARAMETER( shader ); }
-
-protected:
+public:
 	Sprite* m_sprite;
-	Transform m_transformation;
+	Transform m_transform;
 };

@@ -17,9 +17,9 @@
 */
 #include "Game.hpp"
 #include "SquarePlayer.hpp"
-#include "Graphics\Camera.hpp"
-#include "Graphics\Loader\BMP.hpp"
-#include "System/Input.hpp"
+#include "..\Graphics\Camera.hpp"
+#include "..\Graphics\Loader\BMP.hpp"
+#include "..\System/Input.hpp"
 
 Game::Game()
 {

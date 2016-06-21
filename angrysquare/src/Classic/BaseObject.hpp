@@ -15,36 +15,40 @@
 *	You should have received a copy of the GNU General Public License
 *	along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-#include "Square.hpp"
-#include "./Graphics/Loader/BMP.hpp"
+#pragma once
 
-Square::Square()
-	:m_transform( glm::vec3() )
-{
-}
+#include <Windows.h>
+#include "..\Graphics\Sprite.hpp"
+#include "..\Graphics\Transform.hpp"
 
-Square::Square( const std::string& texPath )
-	:m_transform( glm::vec3( 0.0f, 0.0f, 0.0f ), glm::vec3( 0.0f, 0.0f, 0.0f ) )
+class BaseObject
 {
-	std::cout << "This constructor is a bad way at making \"Squares\"...\nLook at SquaresPlayer.*pp" << std::endl;
-	m_sprite = new Sprite( glm::vec2( 0.22f, 0.22f ), BMP::Load( texPath ) );
-}
-
-Square::~Square()
-{
-	if( m_sprite != nullptr )
+public:
+	BaseObject()
+		:m_transformation( glm::vec3( 0.0f, 0.0f, 0.0f ) )
 	{
-		delete m_sprite;
 		m_sprite = nullptr;
 	}
-}
 
-void Square::Update()
-{
-}
+	BaseObject( Sprite* sprite )
+		:m_transformation( glm::vec3( 0.0f, 0.0f, 0.0f ) )
+	{
+		m_sprite = sprite;
+	}
 
-void Square::Render( Shader& shader )
-{
-	shader.SetUniform( "_model", m_transform.GetModelMatrix() );
-	m_sprite->Draw();
-}
+	virtual ~BaseObject()
+	{
+		if( m_sprite != nullptr )
+		{
+			delete m_sprite;
+			m_sprite = nullptr;
+		}
+	}
+
+	virtual void Update() {}
+	virtual void Draw( Shader& shader ) { UNREFERENCED_PARAMETER( shader ); }
+
+protected:
+	Sprite* m_sprite;
+	Transform m_transformation;
+};

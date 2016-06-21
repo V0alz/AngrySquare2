@@ -19,7 +19,7 @@
 
 #include "../Graphics/Graphics.hpp"
 #include "Menu.hpp"
-#include "../Game.hpp"
+#include "../Classic/Game.hpp"
 
 class System
 {

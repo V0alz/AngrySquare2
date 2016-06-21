@@ -18,7 +18,7 @@
 #pragma once
 
 #include "BaseObject.hpp"
-#include "Graphics\Shader.hpp"
+#include "..\Graphics\Shader.hpp"
 
 class AppleObject : public BaseObject
 {

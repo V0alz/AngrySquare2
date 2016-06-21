@@ -15,25 +15,36 @@
 *	You should have received a copy of the GNU General Public License
 *	along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-#pragma once
+#include "Square.hpp"
+#include "../Graphics/Loader/BMP.hpp"
 
-#include "GL\glew.h"
-#include <GLFW\glfw3.h>
-
-#include "Graphics\Sprite.hpp"
-#include "Graphics\Transform.hpp"
-#include "Graphics\Shader.hpp"
-
-class Square
+Square::Square()
+	:m_transform( glm::vec3() )
 {
-public:
-	Square();
-	Square( const std::string& texPath );
-	virtual ~Square();
-	virtual void Update(); // extend square and use this func for player controls & ai respectivly
-	void Render( Shader& shader );
+}
 
-public:
-	Sprite* m_sprite;
-	Transform m_transform;
-};
+Square::Square( const std::string& texPath )
+	:m_transform( glm::vec3( 0.0f, 0.0f, 0.0f ), glm::vec3( 0.0f, 0.0f, 0.0f ) )
+{
+	std::cout << "This constructor is a bad way at making \"Squares\"...\nLook at SquaresPlayer.*pp" << std::endl;
+	m_sprite = new Sprite( glm::vec2( 0.22f, 0.22f ), BMP::Load( texPath ) );
+}
+
+Square::~Square()
+{
+	if( m_sprite != nullptr )
+	{
+		delete m_sprite;
+		m_sprite = nullptr;
+	}
+}
+
+void Square::Update()
+{
+}
+
+void Square::Render( Shader& shader )
+{
+	shader.SetUniform( "_model", m_transform.GetModelMatrix() );
+	m_sprite->Draw();
+}
