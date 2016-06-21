@@ -9,8 +9,8 @@ I'm not investing huge amounts of time into this project, so updates here may be
 The source will require a few libs to compile...  
 GLFW(>~ 3.*)  
 GLEW(>= 1.13.0)
-GLM
-FreeType(>~ 2.6.*)
+GLM  
+FreeType(>~ 2.6.*)  
 
 #### License
 See the LICENSE(.md) file for more details.
