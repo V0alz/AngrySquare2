@@ -17,29 +17,44 @@
 */
 #pragma once
 
+#include <string>
+#include <vector>
+#include "../Graphics/Text.hpp"
 #include "../Graphics/Graphics.hpp"
-#include "Menu.hpp"
-#include "../Game.hpp"
 
-class System
+struct MenuItem
+{
+	unsigned int m_id;
+	std::string m_title;
+	float m_yOffset;
+
+	MenuItem( const unsigned int id, const char* title, float offset )
+	{
+		m_id = id;
+		m_title = title;
+		m_yOffset = offset;
+	}
+
+	void Draw( int curid )
+	{
+		glm::vec3 color = glm::vec3( 1.0f, 1.0f, 1.0f );
+		if( m_id == curid )
+		{
+			color = glm::vec3( 0.9f, 0.1f, 0.1f );
+		}
+		Text::Render( m_title, 1.95f, -1.2f - m_yOffset, 0.007f, color );
+	}
+};
+
+class Menu
 {
 public:
-	System();
-	~System();
-	void Start( bool andRun = true );
-
-protected:
-	void Stop();
-	void Run();
-	void Clean();
-
+	Menu();
+	~Menu();
 	void Update();
-	void Render();
+	void Render( Graphics& gfx );
 
 private:
-	bool m_running;
-	WindowSettings m_settings;
-	Graphics* m_gfx;
-	Menu* m_menu;
-	Game* m_game;
+	std::vector<MenuItem*> m_items;
+	unsigned int m_cursor;
 };

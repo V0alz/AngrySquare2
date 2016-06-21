@@ -105,7 +105,7 @@ void Text::Destroy()
 	glDeleteVertexArrays( 1, &m_VAO );
 }
 
-void Text::Render( const std::string& text, float x, float y, float scale )
+void Text::Render( const std::string& text, float x, float y, float scale, glm::vec3 color )
 {
 	float place_x, place_y;
 	place_x = place_y = 0.0f;
@@ -113,6 +113,7 @@ void Text::Render( const std::string& text, float x, float y, float scale )
 	glBindVertexArray( m_VAO );
 	m_transformation.Position( glm::vec3( x, y, 0.0f ) );
 	m_shader->SetUniform( "_model", m_transformation.GetModelMatrix() );
+	m_shader->SetUniform( "_color", color );
 
 	std::string::const_iterator c;
 	for( c = text.begin(); c != text.end(); c++ )

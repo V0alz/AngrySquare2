@@ -16,20 +16,22 @@
 *	along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
 #include <Windows.h>
-#include "System.hpp"
+#include <iostream>
+#include "System.hpp" 
 #include "SysState.hpp"
 #include "Input.hpp"
 #include "Time.hpp"
 #include "../Graphics/Camera.hpp"
 #include "../Graphics/Loader/GCF.hpp"
 
-#include <iostream>
+SysState::States SysState::m_sysState = SysState::States::STATE_STARTUP;
 
 System::System()
 {
 	m_running = false;
 	m_settings = GCF::Load();
 	m_gfx = nullptr;
+	m_menu = nullptr;
 	m_game = nullptr;
 }
 
@@ -124,6 +126,11 @@ void System::Clean()
 		delete m_game;
 		m_game = nullptr;
 	}
+	if( m_menu != nullptr )
+	{
+		delete m_menu;
+		m_menu = nullptr;
+	}
 	if( m_gfx != nullptr )
 	{
 		m_gfx->Destroy();
@@ -136,6 +143,12 @@ void System::Clean()
 
 void System::Update()
 {
+	if( Window::ShouldExit() )
+	{
+		SysState::Set( SysState::States::STATE_CLEANUP );
+	}
+
+	static Timer paused_last;
 	switch( SysState::Get() )
 	{
 	case SysState::States::STATE_STARTUP:
@@ -147,17 +160,43 @@ void System::Update()
 		}
 		m_gfx->InitGL( m_settings );
 		Input::Init();
+		m_menu = new Menu();
+		SysState::Set( SysState::States::STATE_MENU );
+		break;
+	}
+	case SysState::States::STATE_MENU:
+	{
+		m_menu->Update();
+		break;
+	}
+	case SysState::States::STATE_LOAD:
+	{
 		m_game = new Game();
 		SysState::Set( SysState::States::STATE_PLAYING );
 		break;
 	}
 	case SysState::States::STATE_PLAYING:
 	{
-		if( Window::ShouldExit() )
+		if( Input::Get( GLFW_KEY_ESCAPE ) )
 		{
-			SysState::Set( SysState::States::STATE_CLEANUP );
+			paused_last = Time::GetTime();
+			SysState::Set( SysState::States::STATE_PAUSED );
 		}
 		m_game->Logic();
+		break;
+	}
+	case SysState::States::STATE_PAUSED:
+	{	
+		if( Input::Get( GLFW_KEY_SPACE ) )
+		{
+			SysState::Set( SysState::States::STATE_PLAYING );
+		}
+		if( Input::Get( GLFW_KEY_ESCAPE ) && ((Time::GetTime() - paused_last) > 0.2f) )
+		{
+			delete m_game;
+			m_game = nullptr;
+			SysState::Set( SysState::States::STATE_MENU );
+		}
 		break;
 	}
 	case SysState::States::STATE_CLEANUP:
@@ -174,6 +213,19 @@ void System::Render()
 {
 	switch( SysState::Get() )
 	{
+	case SysState::STATE_MENU:
+	{
+		m_menu->Render( *m_gfx );
+		break;
+	}
+	case SysState::States::STATE_PAUSED:
+	{
+		m_game->Frame( *m_gfx );
+		m_gfx->RequestShader( 1 );
+		Text::Render( "To continue press SPACE", -1.0f, 0.0f, 0.005f );
+		Text::Render( "To quit press ESCAPE", -1.0f, 0.5f, 0.005f ); 
+		break;
+	}
 	case SysState::States::STATE_PLAYING:
 	{
 		m_game->Frame( *m_gfx );

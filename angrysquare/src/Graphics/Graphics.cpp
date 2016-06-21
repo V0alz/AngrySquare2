@@ -19,7 +19,6 @@
 #include <iostream>
 #include "Text.hpp"
 #include "Camera.hpp"
-#include "Loader\GCF.hpp"
 
 Graphics::Graphics()
 {
@@ -66,7 +65,7 @@ bool Graphics::InitGL( WindowSettings& settings )
 			std::cout << "Failed to find requested version OpenGL version.\nErrors may occur..." << std::endl;
 		}
 
-		glClearColor( 0.0f, 0.0f, 0.3f, 1.0f );
+		Window::ClearColor( glm::vec3( 0.0f, 0.0f, 0.3f ) );
 		glEnable( GL_DEPTH_TEST );
 
 		glEnable( GL_BLEND );
@@ -97,6 +96,7 @@ bool Graphics::InitGL( WindowSettings& settings )
 		m_shader[1]->AddUniform( "_model" );
 		m_shader[1]->AddUniform( "_view" );
 		m_shader[1]->AddUniform( "_projection" );
+		m_shader[1]->AddUniform( "_color" );
 
 		Text::Init( *m_shader[1] );
 

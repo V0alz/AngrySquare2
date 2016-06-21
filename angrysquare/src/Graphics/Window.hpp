@@ -18,6 +18,7 @@
 #pragma once
 
 #include <GLFW\glfw3.h>
+#include <glm\glm.hpp>
 #include "WindowsSettings.hpp"
 
 class Window
@@ -28,6 +29,7 @@ public:
 	static void Clear();
 	static void SwapBuffers();
 	static bool ShouldExit();
+	static void ClearColor( glm::vec3 color );
 	static GLFWwindow* GetWindow();
 
 private:

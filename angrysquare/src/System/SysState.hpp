@@ -23,9 +23,10 @@ public:
 	enum States
 	{
 		STATE_STARTUP,
-		STATE_LOAD,
 		STATE_MENU,
+		STATE_LOAD,
 		STATE_PLAYING,
+		STATE_PAUSED,
 		STATE_CLEANUP
 	};
 	static inline States Get() { return m_sysState; }
@@ -34,5 +35,3 @@ public:
 private:
 	static States m_sysState;
 };
-
-SysState::States SysState::m_sysState = SysState::States::STATE_STARTUP;

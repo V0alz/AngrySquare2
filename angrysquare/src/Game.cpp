@@ -16,10 +16,10 @@
 *	along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
 #include "Game.hpp"
-#include "System/Input.hpp"
 #include "SquarePlayer.hpp"
 #include "Graphics\Camera.hpp"
 #include "Graphics\Loader\BMP.hpp"
+#include "System/Input.hpp"
 
 Game::Game()
 {
@@ -31,6 +31,7 @@ Game::Game()
 
 Game::~Game()
 {
+	std::cout << "Deleting game" << std::endl;
 	if( square != nullptr )
 		delete square;
 	if( apple != nullptr )
@@ -50,7 +51,6 @@ void Game::Frame( Graphics& gfx )
 	apple->Draw( *gfx.GetShader( 0 ) );
 	
 	gfx.RequestShader( 1 );
-	Text::Render( "Angry Square 2 - Copyright(C) Dennis Walsh.", -2.97f, -2.97f, 0.003f );
 
 	// There must be a better way to do this
 	std::stringstream scorestr;

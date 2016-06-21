@@ -79,6 +79,11 @@ void Shader::SetUniform( const std::string& name, const glm::mat4 value )
 	glUniformMatrix4fv( m_uniforms.at( name ), 1, GL_FALSE, &value[0][0] );
 }
 
+void Shader::SetUniform( const std::string& name, const glm::vec3 value )
+{
+	glUniform3f( m_uniforms.at( name ), value.x, value.y, value.z );
+}
+
 bool Shader::CheckError( GLuint shader, bool lnkchk )
 {
 	switch( lnkchk )

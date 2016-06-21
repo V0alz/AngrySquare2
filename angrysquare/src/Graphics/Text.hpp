@@ -42,7 +42,7 @@ class Text
 public:
 	static bool Init( Shader& shader );
 	static void Destroy();
-	static void Render( const std::string& text, float x, float y, float scale );
+	static void Render( const std::string& text, float x, float y, float scale, glm::vec3 color = glm::vec3( 1.0f, 1.0f, 1.0f ) );
 
 private:
 	static std::map<GLchar, Char> m_chars;

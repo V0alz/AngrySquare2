@@ -87,6 +87,11 @@ bool Window::ShouldExit()
 	}
 }
 
+void Window::ClearColor( glm::vec3 color )
+{
+	glClearColor( color.x, color.y, color.z, 1.0f );
+}
+
 GLFWwindow* Window::GetWindow()
 {
 	return m_window;

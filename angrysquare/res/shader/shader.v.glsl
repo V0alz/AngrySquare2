@@ -12,5 +12,5 @@ out vec2 v_uv;
 void main()
 {
 	v_uv = uv;
-    gl_Position = _projection * _view * _model * vec4( coordinate.x, coordinate.y, 0.0, 1.0 );
+    gl_Position = _projection * _view * _model * vec4( coordinate.x, coordinate.y, -0.1, 1.0 );
 }
