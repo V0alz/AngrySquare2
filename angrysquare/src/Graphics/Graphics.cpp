@@ -65,7 +65,7 @@ bool Graphics::InitGL( WindowSettings& settings )
 			std::cout << "Failed to find requested version OpenGL version.\nErrors may occur..." << std::endl;
 		}
 
-		Window::ClearColor( glm::vec3( 0.0f, 0.0f, 0.3f ) );
+		Window::ClearColor( glm::vec3( 0.0f, 0.05f, 0.05f ) );
 		glEnable( GL_DEPTH_TEST );
 
 		glEnable( GL_BLEND );

@@ -150,6 +150,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Classic\SquareEnemy.cpp" />
     <ClCompile Include="src\Classic\Game.cpp" />
     <ClCompile Include="src\Classic\Square.cpp" />
     <ClCompile Include="src\Classic\SquarePlayer.cpp" />
@@ -168,8 +169,10 @@
     <ClCompile Include="src\System\Time.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Classic\AABB.hpp" />
     <ClInclude Include="src\Classic\AppleObject.hpp" />
     <ClInclude Include="src\Classic\BaseObject.hpp" />
+    <ClInclude Include="src\Classic\SquareEnemy.hpp" />
     <ClInclude Include="src\Classic\Game.hpp" />
     <ClInclude Include="src\Classic\Square.hpp" />
     <ClInclude Include="src\Classic\SquarePlayer.hpp" />

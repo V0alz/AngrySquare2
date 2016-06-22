@@ -23,6 +23,7 @@
 #include "..\Graphics\Sprite.hpp"
 #include "..\Graphics\Transform.hpp"
 #include "..\Graphics\Shader.hpp"
+#include "AABB.hpp"
 
 class Square
 {
@@ -32,6 +33,12 @@ public:
 	virtual ~Square();
 	virtual void Update(); // extend square and use this func for player controls & ai respectivly
 	void Render( Shader& shader );
+
+	inline AABB& Bounds() { return m_bounds; };
+	inline glm::vec3 Position() { return m_transform.Position(); }
+
+protected:
+	AABB m_bounds;
 
 public:
 	Sprite* m_sprite;

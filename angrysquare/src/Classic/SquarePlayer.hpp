@@ -25,6 +25,10 @@ public:
 	SquarePlayer( const std::string& tex = "./res/tex/player.bmp" );
 	~SquarePlayer();
 	virtual void Update() override;
+	inline void Hurt() { m_health -= 5; }
+	inline void Health( int health ) { m_health = health; }
+	inline int Health() { return m_health; }
 
 private:
+	int m_health;
 };

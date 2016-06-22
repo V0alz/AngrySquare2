@@ -220,10 +220,12 @@ void System::Render()
 	}
 	case SysState::States::STATE_PAUSED:
 	{
-		m_game->Frame( *m_gfx );
+		//m_game->Frame( *m_gfx );
 		m_gfx->RequestShader( 1 );
+		
+		Text::Render( "PAUSED", -1.0f, 0.9f, 0.012f, glm::vec3( 1.0f, 0.0f, 0.0f ) );
 		Text::Render( "To continue press SPACE", -1.0f, 0.0f, 0.005f );
-		Text::Render( "To quit press ESCAPE", -1.0f, 0.5f, 0.005f ); 
+		Text::Render( "To quit press ESCAPE", -1.0f, 0.35f, 0.005f ); 
 		break;
 	}
 	case SysState::States::STATE_PLAYING:

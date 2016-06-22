@@ -15,37 +15,18 @@
 *	You should have received a copy of the GNU General Public License
 *	along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
+#pragma once
+
 #include "Square.hpp"
-#include "../Graphics/Loader/BMP.hpp"
 
-Square::Square()
-	:m_transform( glm::vec3() )
+class SquareEnemy : public Square
 {
-}
+public:
+	SquareEnemy( const std::string& tex = "./res/tex/enemy.bmp" );
+	~SquareEnemy();
+	virtual void Update() override;
+	inline void SetTarget( glm::vec2 target ) { m_targetPos = target; }
 
-Square::Square( const std::string& texPath )
-	:m_transform( glm::vec3( 0.0f, 0.0f, 0.0f ), glm::vec3( 0.0f, 0.0f, 0.0f ) )
-{
-	std::cout << "This constructor is a bad way at making \"Squares\"...\nLook at SquaresPlayer.*pp" << std::endl;
-	m_sprite = new Sprite( glm::vec2( 0.22f, 0.22f ), BMP::Load( texPath ) );
-}
-
-Square::~Square()
-{
-	if( m_sprite != nullptr )
-	{
-		delete m_sprite;
-		m_sprite = nullptr;
-	}
-}
-
-void Square::Update()
-{
-
-}
-
-void Square::Render( Shader& shader )
-{
-	shader.SetUniform( "_model", m_transform.GetModelMatrix() );
-	m_sprite->Draw();
-}
+private:
+	glm::vec2 m_targetPos;
+};

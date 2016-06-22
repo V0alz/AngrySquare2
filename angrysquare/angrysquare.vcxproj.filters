@@ -84,6 +84,9 @@
     <ClCompile Include="src\Classic\SquarePlayer.cpp">
       <Filter>Source Files\Classic</Filter>
     </ClCompile>
+    <ClCompile Include="src\Classic\SquareEnemy.cpp">
+      <Filter>Source Files\Classic</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\System\SysState.hpp">
@@ -149,7 +152,13 @@
     <ClInclude Include="src\Classic\SquarePlayer.hpp">
       <Filter>Header Files\Classic</Filter>
     </ClInclude>
+    <ClInclude Include="src\Classic\AABB.hpp">
+      <Filter>Header Files\Classic</Filter>
+    </ClInclude>
     <ClInclude Include="src\Classic\Game.hpp">
+      <Filter>Header Files\Classic</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Classic\SquareEnemy.hpp">
       <Filter>Header Files\Classic</Filter>
     </ClInclude>
   </ItemGroup>

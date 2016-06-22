@@ -18,7 +18,8 @@
 #pragma once
 
 #include "..\Graphics\Graphics.hpp"
-#include "Square.hpp"
+#include "SquarePlayer.hpp"
+#include "SquareEnemy.hpp"
 #include "..\Graphics\Text.hpp"
 #include "AppleObject.hpp"
 
@@ -31,7 +32,8 @@ public:
 	virtual void Frame( Graphics& gfx );
 
 private:
-	Square* square;
+	SquarePlayer* square;
+	SquareEnemy* enemy;
 	BaseObject* apple;
 
 	int score;

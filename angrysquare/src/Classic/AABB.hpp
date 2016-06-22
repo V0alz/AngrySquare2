@@ -17,22 +17,44 @@
 */
 #pragma once
 
-#include "..\Graphics\Graphics.hpp"
-#include "Square.hpp"
-#include "..\Graphics\Text.hpp"
-#include "AppleObject.hpp"
+#include <glm\glm.hpp>
 
-class Game
+class AABB
 {
 public:
-	Game();
-	~Game();
-	virtual void Logic();
-	virtual void Frame( Graphics& gfx );
+	AABB()
+		:m_min(),
+		m_max()
+	{
+	}
+
+	~AABB()
+	{
+	}
+
+	void Set( glm::vec2 min, glm::vec2 max )
+	{
+		m_min = min;
+		m_max = max;
+	}
+
+	static bool Intersects( const AABB& A, const AABB& B )
+	{
+		if( A.m_min.x < B.m_max.x &&
+			A.m_max.x > B.m_min.x &&
+			A.m_min.y < B.m_max.y &&
+			A.m_max.y > B.m_min.y )
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
 
 private:
-	Square* square;
-	BaseObject* apple;
-
-	int score;
+	glm::vec2 m_min;
+	glm::vec2 m_max;
 };

@@ -16,7 +16,6 @@
 *	along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
 #include "Game.hpp"
-#include "SquarePlayer.hpp"
 #include "..\Graphics\Camera.hpp"
 #include "..\Graphics\Loader\BMP.hpp"
 #include "..\System/Input.hpp"
@@ -24,6 +23,7 @@
 Game::Game()
 {
 	square = new SquarePlayer();
+	enemy = new SquareEnemy();
 	apple = new AppleObject( new Sprite( glm::vec2( 0.25f, 0.25f ), BMP::Load( "./res/tex/apple.bmp" ) ) );
 
 	score = 0;
@@ -36,29 +36,41 @@ Game::~Game()
 		delete square;
 	if( apple != nullptr )
 		delete apple;
+	if( enemy != nullptr )
+		delete enemy;
 }
 
 void Game::Logic()
 {
 	square->Update();
+	enemy->SetTarget( glm::vec2( square->Position() ) );
 	apple->Update();
+	enemy->Update();
+
+	if( AABB::Intersects( square->Bounds(), enemy->Bounds() ) )
+	{
+		square->Hurt();
+	}
 }
 
 void Game::Frame( Graphics& gfx )
 {
 	gfx.RequestShader( 0 );
 	square->Render( *gfx.GetShader( 0 ) );
+	enemy->Render( *gfx.GetShader( 0 ) );
 	apple->Draw( *gfx.GetShader( 0 ) );
-	
+
 	gfx.RequestShader( 1 );
 
 	// There must be a better way to do this
-	std::stringstream scorestr;
+	std::stringstream scorestr, healthstr;
 	scorestr << "Score: ";
-	scorestr.put( score );
+	scorestr << score;
+	healthstr << "Health: ";
+	healthstr << square->Health();
 
 	Text::Render( scorestr.str(), -2.95f, 2.7f, 0.005f );
-	score++;
+	Text::Render( healthstr.str(), -2.95f, 2.2f, 0.005f );
 }
 
 /* Notes for settings stuff:

@@ -35,7 +35,10 @@ public:
 
 	virtual void Update()
 	{
+		glm::vec3 pos;
+		pos = m_transformation.Position();
 
+		m_bounds.Set( glm::vec2( pos.x - (0.25f / 2), pos.y - (0.25f / 2) ), glm::vec2( pos.x + (0.25f / 2), pos.y + (0.25f / 2) ) );
 	}
 
 	virtual void Draw( Shader& shader )

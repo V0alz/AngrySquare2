@@ -25,8 +25,8 @@ Menu::Menu()
 {
 	m_items.clear();
 	m_items.emplace_back( new MenuItem( 0, "Play", 0.0f ) );
-	m_items.emplace_back( new MenuItem( 1, "Options", 0.5f ) );
-	m_items.emplace_back( new MenuItem( 2, "Exit", 1.25f ) );
+	m_items.emplace_back( new MenuItem( 1, "Options", 0.4f ) );
+	m_items.emplace_back( new MenuItem( 2, "Exit", 1.1f ) );
 
 	m_cursor = 0;
 }
@@ -87,7 +87,7 @@ void Menu::Render( Graphics& gfx )
 {
 	Window::ClearColor( glm::vec3( 0.0f, 0.0f, 0.0f ) );
 	Window::Clear();
-	Window::ClearColor( glm::vec3( 0.0f, 0.0f, 0.3f ) );
+	Window::ClearColor( glm::vec3( 0.0f, 0.05f, 0.05f ) );
 
 	gfx.RequestShader( 1 );
 	Text::Render( "Angry  Square  2", -2.8f, 1.85f, 0.015f, glm::vec3( 1.0f, 0.0f, 0.0f ) );

@@ -20,6 +20,7 @@
 #include <Windows.h>
 #include "..\Graphics\Sprite.hpp"
 #include "..\Graphics\Transform.hpp"
+#include "AABB.hpp"
 
 class BaseObject
 {
@@ -48,7 +49,10 @@ public:
 	virtual void Update() {}
 	virtual void Draw( Shader& shader ) { UNREFERENCED_PARAMETER( shader ); }
 
+	inline AABB& Bounds() { return m_bounds; };
+
 protected:
 	Sprite* m_sprite;
 	Transform m_transformation;
+	AABB m_bounds;
 };

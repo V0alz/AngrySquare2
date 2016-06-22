@@ -15,45 +15,33 @@
 *	You should have received a copy of the GNU General Public License
 *	along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-#include "SquarePlayer.hpp"
+#include "SquareEnemy.hpp"
 #include "..\System\Input.hpp"
 #include "..\Graphics\Loader\BMP.hpp"
 #include "..\System\Time.hpp"
 
-SquarePlayer::SquarePlayer( const std::string& tex )
+SquareEnemy::SquareEnemy( const std::string& tex )
 {
 	m_sprite = new Sprite( glm::vec2( 0.5f, 0.5f ), BMP::Load( tex ) );
-	m_transform.Position( glm::vec3( 0.0f, 0.0f, 0.0f ) );
-	m_health = 100;
+	m_transform.Position( glm::vec3( 0.0f, 3.0f, 0.0f ) );
 }
 
-SquarePlayer::~SquarePlayer()
+SquareEnemy::~SquareEnemy()
 {
 }
 
-void SquarePlayer::Update()
+void SquareEnemy::Update()
 {
 	double _delta = Time::GetDelta();
 	glm::vec3 pos;
 	pos = m_transform.Position();
 
-	if( Input::Get( GLFW_KEY_W ) )
-	{
-		pos.y += static_cast<float>(0.6f * _delta);
-	}
-	if( Input::Get( GLFW_KEY_S ) )
-	{
-		pos.y -= static_cast<float>(0.6f * _delta);
-	}
-
-	if( Input::Get( GLFW_KEY_A ) )
-	{
-		pos.x -= static_cast<float>(0.6f * _delta);
-	}
-	if( Input::Get( GLFW_KEY_D ) )
-	{
-		pos.x += static_cast<float>(0.6f * _delta);
-	}
+	glm::vec2 difference = glm::vec2( m_targetPos.x - pos.x, m_targetPos.y - pos.y );
+	float distance = sqrt( (difference.x * difference.x) + (difference.y * difference.y) );
+	glm::vec2 normal = glm::vec2( difference.x / distance, difference.y / distance );
+	
+	pos.x += normal.x * 0.5f * static_cast<float>(_delta);
+	pos.y += normal.y * 0.5f * static_cast<float>(_delta);
 
 	if( pos.x - 0.25f < -3.0f )
 	{
