@@ -29,6 +29,7 @@ public:
 	static void Clear();
 	static void SwapBuffers();
 	static bool ShouldExit();
+	static void SetVSync( int val );
 	static void ClearColor( glm::vec3 color );
 	static GLFWwindow* GetWindow();
 

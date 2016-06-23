@@ -17,29 +17,41 @@
 */
 #pragma once
 
-struct WindowSettings
+#include "Menu.hpp"
+
+
+#define _option_resolutions 2
+#define _option_frameRates 6
+struct _options
 {
-	int m_width;
-	int m_height;
-	bool m_fullscreen;
-	bool m_vsync;
-	char m_fps;
-
-	WindowSettings()
+	const glm::ivec2 m_resolutions[_option_resolutions] =
 	{
-		m_width = 800;
-		m_height = 600;
-		m_fullscreen = false;
-		m_vsync = false;
-		m_fps = 30;
-	}
+		glm::ivec2( 800, 600 ),
+		glm::ivec2( 1440, 960 )
+	};
 
-	WindowSettings( WindowSettings& settings )
+	const int m_frameRates[_option_frameRates] =
 	{
-		m_width = settings.m_width;
-		m_height = settings.m_height;
-		m_fullscreen = settings.m_fullscreen;
-		m_vsync = settings.m_vsync;
-		m_fps = settings.m_fps;
-	}
+		20,
+		30,
+		45,
+		55,
+		60,
+		120
+	};
+};
+
+class MenuOptions : public Menu
+{
+public:
+	MenuOptions();
+	~MenuOptions();
+	virtual void Responses() override;
+	virtual void ExtraRender( Graphics& gfx ) override;
+
+private:
+	WindowSettings* m_settings;
+	bool m_requireRefresh;
+	int m_resolution;
+	int m_fps;
 };

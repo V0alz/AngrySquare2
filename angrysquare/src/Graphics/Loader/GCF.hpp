@@ -32,13 +32,21 @@ public:
 	static WindowSettings Load()
 	{
 		WindowSettings settings;
+		bool ready = false;
 
 		std::ifstream fs;
-		fs.open( "settings.gcf", std::ios::binary );
-		if( !fs.is_open() )
+		while( !ready )
 		{
-			std::cout << "Unable to open " << std::endl;
-			return settings;
+			fs.open( "settings.gcf", std::ios::binary );
+			if( !fs.is_open() )
+			{
+				std::cout << "Unable to open settings, making default file." << std::endl;
+				GCF::SaveDefault();
+			}
+			else
+			{
+				ready = true;
+			}
 		}
 
 		char input[4];
@@ -71,7 +79,25 @@ public:
 		return settings;
 	}
 
-	static void Save()
+	static void Save( WindowSettings& settings )
+	{
+		std::ofstream fs;
+		fs.open( "settings.gcf", std::ios::binary );
+
+		std::stringstream ss;
+		ss << 'A' << 'S' << '2' << '0' << static_cast<char>(0)
+			<< std::setw( 4 ) << std::setfill( '0' ) << settings.m_width << static_cast<char>(0)
+			<< std::setw( 4 ) << std::setfill( '0' ) << settings.m_height << static_cast<char>(0)
+			<< settings.m_fullscreen << static_cast<char>(0)
+			<< settings.m_vsync << static_cast<char>(0)
+			<< settings.m_fps << static_cast<char>(0)
+			<< static_cast<char>(0);
+
+		fs << ss.str();
+		fs.close();
+	}
+
+	static void SaveDefault()
 	{
 		std::ofstream fs;
 		fs.open( "settings.gcf", std::ios::binary );

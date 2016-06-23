@@ -31,7 +31,6 @@ System::System()
 	m_running = false;
 	m_settings = GCF::Load();
 	m_gfx = nullptr;
-	m_menu = nullptr;
 	m_game = nullptr;
 }
 
@@ -121,15 +120,11 @@ void System::Run()
 
 void System::Clean()
 {
+	MenuManager::Destroy();
 	if( m_game != nullptr )
 	{
 		delete m_game;
 		m_game = nullptr;
-	}
-	if( m_menu != nullptr )
-	{
-		delete m_menu;
-		m_menu = nullptr;
 	}
 	if( m_gfx != nullptr )
 	{
@@ -160,13 +155,13 @@ void System::Update()
 		}
 		m_gfx->InitGL( m_settings );
 		Input::Init();
-		m_menu = new Menu();
+		MenuManager::Init();
 		SysState::Set( SysState::States::STATE_MENU );
 		break;
 	}
 	case SysState::States::STATE_MENU:
 	{
-		m_menu->Update();
+		MenuManager::Update();
 		break;
 	}
 	case SysState::States::STATE_LOAD:
@@ -215,7 +210,8 @@ void System::Render()
 	{
 	case SysState::STATE_MENU:
 	{
-		m_menu->Render( *m_gfx );
+		m_gfx->RequestShader( 1 );
+		MenuManager::Render( *m_gfx );
 		break;
 	}
 	case SysState::States::STATE_PAUSED:

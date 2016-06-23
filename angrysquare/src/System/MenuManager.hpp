@@ -17,29 +17,26 @@
 */
 #pragma once
 
-struct WindowSettings
+#include "Menu.hpp"
+#include "MenuOptions.hpp"
+
+class MenuManager
 {
-	int m_width;
-	int m_height;
-	bool m_fullscreen;
-	bool m_vsync;
-	char m_fps;
-
-	WindowSettings()
+public:
+	enum Pages
 	{
-		m_width = 800;
-		m_height = 600;
-		m_fullscreen = false;
-		m_vsync = false;
-		m_fps = 30;
-	}
+		PAGE_MAIN,
+		PAGE_OPTIONS
+	};
+public:
+	static void Init();
+	static void Destroy();
+	static void Update();
+	static void Render( Graphics& gfx );
+	static void RequestPage( Pages page );
 
-	WindowSettings( WindowSettings& settings )
-	{
-		m_width = settings.m_width;
-		m_height = settings.m_height;
-		m_fullscreen = settings.m_fullscreen;
-		m_vsync = settings.m_vsync;
-		m_fps = settings.m_fps;
-	}
+private:
+	static Pages m_active;
+	static Menu* m_mainMenu;
+	static Menu* m_child;
 };

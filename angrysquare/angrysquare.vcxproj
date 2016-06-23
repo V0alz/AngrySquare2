@@ -150,10 +150,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Classic\SquareEnemy.cpp" />
-    <ClCompile Include="src\Classic\Game.cpp" />
-    <ClCompile Include="src\Classic\Square.cpp" />
-    <ClCompile Include="src\Classic\SquarePlayer.cpp" />
     <ClCompile Include="src\Graphics\Camera.cpp" />
     <ClCompile Include="src\Graphics\Graphics.cpp" />
     <ClCompile Include="src\Graphics\Mesh.cpp" />
@@ -163,19 +159,18 @@
     <ClCompile Include="src\Graphics\Transform.cpp" />
     <ClCompile Include="src\Graphics\Window.cpp" />
     <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\Original\Game.cpp" />
+    <ClCompile Include="src\Original\Square.cpp" />
+    <ClCompile Include="src\Original\SquareEnemy.cpp" />
+    <ClCompile Include="src\Original\SquarePlayer.cpp" />
     <ClCompile Include="src\System\Input.cpp" />
     <ClCompile Include="src\System\Menu.cpp" />
+    <ClCompile Include="src\System\MenuManager.cpp" />
+    <ClCompile Include="src\System\MenuOptions.cpp" />
     <ClCompile Include="src\System\System.cpp" />
     <ClCompile Include="src\System\Time.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Classic\AABB.hpp" />
-    <ClInclude Include="src\Classic\AppleObject.hpp" />
-    <ClInclude Include="src\Classic\BaseObject.hpp" />
-    <ClInclude Include="src\Classic\SquareEnemy.hpp" />
-    <ClInclude Include="src\Classic\Game.hpp" />
-    <ClInclude Include="src\Classic\Square.hpp" />
-    <ClInclude Include="src\Classic\SquarePlayer.hpp" />
     <ClInclude Include="src\Graphics\Camera.hpp" />
     <ClInclude Include="src\Graphics\Graphics.hpp" />
     <ClInclude Include="src\Graphics\Loader\BMP.hpp" />
@@ -188,8 +183,17 @@
     <ClInclude Include="src\Graphics\Transform.hpp" />
     <ClInclude Include="src\Graphics\Window.hpp" />
     <ClInclude Include="src\Graphics\WindowsSettings.hpp" />
+    <ClInclude Include="src\Original\AABB.hpp" />
+    <ClInclude Include="src\Original\AppleObject.hpp" />
+    <ClInclude Include="src\Original\BaseObject.hpp" />
+    <ClInclude Include="src\Original\Game.hpp" />
+    <ClInclude Include="src\Original\Square.hpp" />
+    <ClInclude Include="src\Original\SquareEnemy.hpp" />
+    <ClInclude Include="src\Original\SquarePlayer.hpp" />
     <ClInclude Include="src\System\Input.hpp" />
     <ClInclude Include="src\System\Menu.hpp" />
+    <ClInclude Include="src\System\MenuManager.hpp" />
+    <ClInclude Include="src\System\MenuOptions.hpp" />
     <ClInclude Include="src\System\SysState.hpp" />
     <ClInclude Include="src\System\System.hpp" />
     <ClInclude Include="src\System\Time.hpp" />

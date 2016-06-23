@@ -18,8 +18,8 @@
 #pragma once
 
 #include "../Graphics/Graphics.hpp"
-#include "Menu.hpp"
-#include "../Classic/Game.hpp"
+#include "MenuManager.hpp"
+#include "../Original/Game.hpp"
 
 class System
 {
@@ -40,6 +40,5 @@ private:
 	bool m_running;
 	WindowSettings m_settings;
 	Graphics* m_gfx;
-	Menu* m_menu;
 	Game* m_game;
 };

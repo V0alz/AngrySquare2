@@ -15,20 +15,26 @@
 *	You should have received a copy of the GNU General Public License
 *	along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
+#include <Windows.h>
 #include "Menu.hpp"
+#include "MenuManager.hpp"
 #include "Input.hpp"
-#include "Time.hpp"
 #include "../Graphics/Window.hpp"
 #include "SysState.hpp"
+
+Timer Menu::m_keyLast = 0.0;
 
 Menu::Menu()
 {
 	m_items.clear();
 	m_items.emplace_back( new MenuItem( 0, "Play", 0.0f ) );
-	m_items.emplace_back( new MenuItem( 1, "Options", 0.4f ) );
-	m_items.emplace_back( new MenuItem( 2, "Exit", 1.1f ) );
+	m_items.emplace_back( new MenuItem( 1, "Original", 0.4f ) );
+	m_items.emplace_back( new MenuItem( 2, "Options", 0.8f ) );
+	m_items.emplace_back( new MenuItem( 3, "Exit", 1.5f ) );
 
 	m_cursor = 0;
+	m_listX = 1.82f;
+	m_keyLast = Time::GetTime();
 }
 
 Menu::~Menu()
@@ -42,44 +48,52 @@ Menu::~Menu()
 
 void Menu::Update()
 {
-	static Timer keyLast;
 	Timer keyDelay = Time::GetTime();
-	if( (keyDelay - keyLast) >= 0.15f )
+	if( (keyDelay - m_keyLast) >= 0.15 )
 	{
 		if( Input::Get( GLFW_KEY_W ) && (m_cursor > 0) )
 		{
 			m_cursor--;
-			keyLast = Time::GetTime();
+			m_keyLast = Time::GetTime();
 		}
 
-		if( Input::Get( GLFW_KEY_S ) && (m_cursor < m_items.size()-1) )
+		if( Input::Get( GLFW_KEY_S ) && (m_cursor < m_items.size() - 1) )
 		{
 			m_cursor++;
-			keyLast = Time::GetTime();
+			m_keyLast = Time::GetTime();
 		}
-	}
 
-	if( Input::Get( GLFW_KEY_ENTER ) || 
-		Input::Get( GLFW_KEY_SPACE ) )
-	{
-		switch( m_cursor )
+		if( Input::Get( GLFW_KEY_ENTER ) ||
+			Input::Get( GLFW_KEY_SPACE ) )
 		{
-		case 0:
-			SysState::Set( SysState::States::STATE_LOAD );
-			break;
-		case 1:
-			break;
-		case 2:
-			SysState::Set( SysState::States::STATE_CLEANUP );
-			break;
-		default:
-			break;
+			Responses();
+			m_keyLast = Time::GetTime();
 		}
 	}
 
-	if( Input::Get( GLFW_KEY_ESCAPE )  )
+	if( Input::Get( GLFW_KEY_ESCAPE ) )
 	{
 		//SysState::Set( SysState::States::STATE_CLEANUP );
+	}
+}
+
+void Menu::Responses()
+{
+	switch( m_cursor )
+	{
+	case 0:
+		break;
+	case 1:
+		SysState::Set( SysState::States::STATE_LOAD );
+		break;
+	case 2:
+		MenuManager::RequestPage( MenuManager::Pages::PAGE_OPTIONS );
+		break;
+	case 3:
+		SysState::Set( SysState::States::STATE_CLEANUP );
+		break;
+	default:
+		break;
 	}
 }
 
@@ -92,15 +106,21 @@ void Menu::Render( Graphics& gfx )
 	gfx.RequestShader( 1 );
 	Text::Render( "Angry  Square  2", -2.8f, 1.85f, 0.015f, glm::vec3( 1.0f, 0.0f, 0.0f ) );
 
-	for( unsigned int i = 0; i < m_items.size(); i++ ) 
+	for( unsigned int i = 0; i < m_items.size(); i++ )
 	{
-		m_items.at( i )->Draw( m_cursor );
+		m_items.at( i )->Draw( m_cursor, m_listX );
 	}
 
-	if( m_cursor == 2 )
-	{
-		Text::Render( ":(", -2.0f, -1.0f, 0.015f, glm::vec3( 0.0f, 0.0f, 1.0f ) );
-	}
+	ExtraRender( gfx );
 
-	Text::Render( "Angry Square 2 - Copyright(C) Dennis Walsh.", -2.97f, -2.97f, 0.003f );
+	Text::Render( "Angry Square 2 - Copyright(C) Dennis Walsh.", -2.97f, -2.97f, 0.0028f );
+}
+
+void Menu::ExtraRender( Graphics& gfx )
+{
+	UNREFERENCED_PARAMETER( gfx );
+	if( m_cursor == 3 )
+	{
+		Text::Render( ":(", -2.0f, 1.0f, 0.015f, glm::vec3( 0.0f, 0.5f, 1.0f ) );
+	}
 }

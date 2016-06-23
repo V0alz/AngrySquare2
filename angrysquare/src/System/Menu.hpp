@@ -21,6 +21,7 @@
 #include <vector>
 #include "../Graphics/Text.hpp"
 #include "../Graphics/Graphics.hpp"
+#include "Time.hpp"
 
 struct MenuItem
 {
@@ -35,14 +36,14 @@ struct MenuItem
 		m_yOffset = offset;
 	}
 
-	void Draw( unsigned int curid )
+	void Draw( unsigned int curid, float x )
 	{
 		glm::vec3 color = glm::vec3( 1.0f, 1.0f, 1.0f );
 		if( m_id == curid )
 		{
 			color = glm::vec3( 0.9f, 0.1f, 0.1f );
 		}
-		Text::Render( m_title, 1.95f, -1.2f - m_yOffset, 0.007f, color );
+		Text::Render( m_title, x, -1.2f - m_yOffset, 0.007f, color );
 	}
 };
 
@@ -52,9 +53,14 @@ public:
 	Menu();
 	~Menu();
 	void Update();
+	virtual void Responses();
 	void Render( Graphics& gfx );
+	virtual void ExtraRender( Graphics& gfx );
 
-private:
+protected:
 	std::vector<MenuItem*> m_items;
 	unsigned int m_cursor;
+	float m_listX;
+
+	static Timer m_keyLast;
 };

@@ -28,10 +28,10 @@
     <Filter Include="Header Files\Graphics\Loader">
       <UniqueIdentifier>{89314dca-dd46-4acc-8498-4098c02de5ad}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Classic">
+    <Filter Include="Header Files\Original">
       <UniqueIdentifier>{b8d21b1d-3987-4e38-8625-6de93280be36}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Classic">
+    <Filter Include="Source Files\Original">
       <UniqueIdentifier>{dab9272d-feb2-4848-96c9-a93bcf1daf19}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -75,17 +75,23 @@
     <ClCompile Include="src\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Classic\Game.cpp">
-      <Filter>Source Files\Classic</Filter>
+    <ClCompile Include="src\Original\Game.cpp">
+      <Filter>Source Files\Original</Filter>
     </ClCompile>
-    <ClCompile Include="src\Classic\Square.cpp">
-      <Filter>Source Files\Classic</Filter>
+    <ClCompile Include="src\Original\Square.cpp">
+      <Filter>Source Files\Original</Filter>
     </ClCompile>
-    <ClCompile Include="src\Classic\SquarePlayer.cpp">
-      <Filter>Source Files\Classic</Filter>
+    <ClCompile Include="src\Original\SquareEnemy.cpp">
+      <Filter>Source Files\Original</Filter>
     </ClCompile>
-    <ClCompile Include="src\Classic\SquareEnemy.cpp">
-      <Filter>Source Files\Classic</Filter>
+    <ClCompile Include="src\Original\SquarePlayer.cpp">
+      <Filter>Source Files\Original</Filter>
+    </ClCompile>
+    <ClCompile Include="src\System\MenuOptions.cpp">
+      <Filter>Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="src\System\MenuManager.cpp">
+      <Filter>Source Files\System</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -140,26 +146,32 @@
     <ClInclude Include="src\System\Menu.hpp">
       <Filter>Header Files\System</Filter>
     </ClInclude>
-    <ClInclude Include="src\Classic\AppleObject.hpp">
-      <Filter>Header Files\Classic</Filter>
+    <ClInclude Include="src\Original\SquarePlayer.hpp">
+      <Filter>Header Files\Original</Filter>
     </ClInclude>
-    <ClInclude Include="src\Classic\BaseObject.hpp">
-      <Filter>Header Files\Classic</Filter>
+    <ClInclude Include="src\Original\SquareEnemy.hpp">
+      <Filter>Header Files\Original</Filter>
     </ClInclude>
-    <ClInclude Include="src\Classic\Square.hpp">
-      <Filter>Header Files\Classic</Filter>
+    <ClInclude Include="src\Original\Square.hpp">
+      <Filter>Header Files\Original</Filter>
     </ClInclude>
-    <ClInclude Include="src\Classic\SquarePlayer.hpp">
-      <Filter>Header Files\Classic</Filter>
+    <ClInclude Include="src\Original\Game.hpp">
+      <Filter>Header Files\Original</Filter>
     </ClInclude>
-    <ClInclude Include="src\Classic\AABB.hpp">
-      <Filter>Header Files\Classic</Filter>
+    <ClInclude Include="src\Original\BaseObject.hpp">
+      <Filter>Header Files\Original</Filter>
     </ClInclude>
-    <ClInclude Include="src\Classic\Game.hpp">
-      <Filter>Header Files\Classic</Filter>
+    <ClInclude Include="src\Original\AABB.hpp">
+      <Filter>Header Files\Original</Filter>
     </ClInclude>
-    <ClInclude Include="src\Classic\SquareEnemy.hpp">
-      <Filter>Header Files\Classic</Filter>
+    <ClInclude Include="src\Original\AppleObject.hpp">
+      <Filter>Header Files\Original</Filter>
+    </ClInclude>
+    <ClInclude Include="src\System\MenuOptions.hpp">
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="src\System\MenuManager.hpp">
+      <Filter>Header Files\System</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

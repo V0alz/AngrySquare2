@@ -87,6 +87,11 @@ bool Window::ShouldExit()
 	}
 }
 
+void Window::SetVSync( int val )
+{
+	glfwSwapInterval( val );
+}
+
 void Window::ClearColor( glm::vec3 color )
 {
 	glClearColor( color.x, color.y, color.z, 1.0f );
