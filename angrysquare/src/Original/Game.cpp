@@ -20,6 +20,8 @@
 #include "..\Graphics\Loader\BMP.hpp"
 #include "..\System/Input.hpp"
 
+#define _DEBUG_EXTRAS
+
 Game::Game()
 {
 	square = new SquarePlayer();
@@ -51,6 +53,12 @@ void Game::Logic()
 	{
 		square->Hurt();
 	}
+
+	if( AABB::Intersects( square->Bounds(), apple->Bounds() ) )
+	{
+		apple->Respawn();
+		score += 5;
+	}
 }
 
 void Game::Frame( Graphics& gfx )
@@ -62,15 +70,29 @@ void Game::Frame( Graphics& gfx )
 
 	gfx.RequestShader( 1 );
 
-	// There must be a better way to do this
-	std::stringstream scorestr, healthstr;
-	scorestr << "Score: ";
-	scorestr << score;
-	healthstr << "Health: ";
-	healthstr << square->Health();
+	std::stringstream str;
+	str << "Score: ";
+	str << score;
+	Text::Render( str.str(), -2.95f, 2.7f, 0.005f );
 
-	Text::Render( scorestr.str(), -2.95f, 2.7f, 0.005f );
-	Text::Render( healthstr.str(), -2.95f, 2.2f, 0.005f );
+	str.str( std::string() );
+	str << "Health: ";
+	str << square->Health();
+	Text::Render( str.str(), -2.95f, 2.4f, 0.005f );
+
+#ifdef _DEBUG_EXTRAS
+	str.str( std::string() );
+	str << "Player(X:" << square->Position().x << ", Y: " << square->Position().y << ")";
+	Text::Render( str.str(), -2.95f, 1.7f, 0.005f );
+
+	str.str( std::string() );
+	str << "Enemy(X:" << enemy->Position().x << ", Y: " << enemy->Position().y << ")";
+	Text::Render( str.str(), -2.95f, 1.4f, 0.005f );
+
+	str.str( std::string() );
+	str << "Apple(X:" << apple->Transfromation().Position().x << ", Y: " << apple->Transfromation().Position().y << ")";
+	Text::Render( str.str(), -2.95f, 1.1f, 0.005f );
+#endif
 }
 
 /* Notes for settings stuff:

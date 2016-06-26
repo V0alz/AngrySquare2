@@ -25,7 +25,7 @@ class MenuManager
 public:
 	enum Pages
 	{
-		PAGE_MAIN,
+		PAGE_MAIN, // This is the menu root, has to be m_active init value.
 		PAGE_OPTIONS
 	};
 public:

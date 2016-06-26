@@ -84,7 +84,7 @@ void Menu::Responses()
 	case 0:
 		break;
 	case 1:
-		SysState::Set( SysState::States::STATE_LOAD );
+		SysState::Set( SysState::States::STATE_LOAD_ORIGINAL );
 		break;
 	case 2:
 		MenuManager::RequestPage( MenuManager::Pages::PAGE_OPTIONS );
@@ -104,7 +104,7 @@ void Menu::Render( Graphics& gfx )
 	Window::ClearColor( glm::vec3( 0.0f, 0.05f, 0.05f ) );
 
 	gfx.RequestShader( 1 );
-	Text::Render( "Angry  Square  2", -2.8f, 1.85f, 0.015f, glm::vec3( 1.0f, 0.0f, 0.0f ) );
+	Text::Render( "Hungry  Square  2", -2.8f, 1.85f, 0.015f, glm::vec3( 1.0f, 0.0f, 0.0f ) );
 
 	for( unsigned int i = 0; i < m_items.size(); i++ )
 	{
@@ -113,7 +113,7 @@ void Menu::Render( Graphics& gfx )
 
 	ExtraRender( gfx );
 
-	Text::Render( "Angry Square 2 - Copyright(C) Dennis Walsh.", -2.97f, -2.97f, 0.0028f );
+	Text::Render( "Hungry Square 2 - Copyright(C) Dennis Walsh.", -2.97f, -2.97f, 0.0028f );
 }
 
 void Menu::ExtraRender( Graphics& gfx )

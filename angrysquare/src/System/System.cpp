@@ -164,7 +164,7 @@ void System::Update()
 		MenuManager::Update();
 		break;
 	}
-	case SysState::States::STATE_LOAD:
+	case SysState::States::STATE_LOAD_ORIGINAL:
 	{
 		m_game = new Game();
 		SysState::Set( SysState::States::STATE_PLAYING );

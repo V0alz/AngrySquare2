@@ -19,6 +19,8 @@
 
 #include "BaseObject.hpp"
 #include "..\Graphics\Shader.hpp"
+#include <random>
+#include <ctime>
 
 class AppleObject : public BaseObject
 {
@@ -27,6 +29,7 @@ public:
 	{
 		//BaseObject( sprite );
 		m_sprite = sprite;
+		Respawn();
 	}
 
 	~AppleObject()
@@ -45,6 +48,15 @@ public:
 	{
 		shader.SetUniform( "_model", m_transformation.GetModelMatrix() );
 		m_sprite->Draw();
+	}
+
+	virtual void Respawn()
+	{
+		std::srand( std::time( 0 ) * std::time( 0 ) );
+		int rx = std::rand() % 600;
+		int ry = std::rand() % 600;
+		m_transformation.Position().x = static_cast<float>((rx - 300.0f) / 100.0f);
+		m_transformation.Position().y = static_cast<float>((ry - 300.0f) / 100.0f);
 	}
 
 private:

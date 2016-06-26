@@ -48,8 +48,10 @@ public:
 
 	virtual void Update() {}
 	virtual void Draw( Shader& shader ) { UNREFERENCED_PARAMETER( shader ); }
+	virtual void Respawn() {}
 
 	inline AABB& Bounds() { return m_bounds; };
+	inline Transform& Transfromation() { return m_transformation; }
 
 protected:
 	Sprite* m_sprite;
